@@ -8,14 +8,7 @@ class CreateCiudadTable extends Migration
 {
     /**
      * Run the migrations.
-     *  id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        alias VARCHAR(255) NOT NULL,
-        descripcion TEXT,
-        portada VARCHAR(255),
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL
-        PRIMARY KEY (id)
+     * 
      * @return void
      */
     public function up()

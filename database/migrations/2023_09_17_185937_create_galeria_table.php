@@ -8,13 +8,7 @@ class CreateGaleriaTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        ruta VARCHAR(255) NOT NULL,
-        id_novio INT NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id)
+     *
      * @return void
      */
     public function up()

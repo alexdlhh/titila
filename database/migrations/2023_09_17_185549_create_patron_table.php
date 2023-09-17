@@ -8,13 +8,7 @@ class CreatePatronTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        ruta VARCHAR(255) NOT NULL,
-        ruta_negativo VARCHAR(255) NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        PRIMARY KEY (id),
+     *
      * @return void
      */
     public function up()

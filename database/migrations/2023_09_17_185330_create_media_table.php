@@ -8,15 +8,7 @@ class CreateMediaTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        ruta VARCHAR(255) NOT NULL,
-        tipo VARCHAR(255) NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        id_ciudad INT NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_ciudad) REFERENCES $wpdb->prefix . 'ciudad' (id)
+     *
      * @return void
      */
     public function up()

@@ -8,21 +8,7 @@ class CreateNoviosRelTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        id_novio INT NOT NULL,
-        id_ciudad INT NOT NULL,
-        restaurantes VARCHAR(255),
-        actividades VARCHAR(255),
-        imperdibles VARCHAR(255),
-        estetica VARCHAR(255),
-        alojamiento VARCHAR(255),
-        transporte VARCHAR(255),
-        id_media_svg INT NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id),
-        FOREIGN KEY (id_ciudad) REFERENCES $wpdb->prefix . 'ciudad' (id)
+     *
      * @return void
      */
     public function up()

@@ -1,3 +1,27 @@
+## Instalation
+
+#levantar proyecto en local
+
+localhost:8010
+
+```
+docker-compose up -d
+docker-compose exec app composer install
+```
+
+#migrar bbdd
+
+```
+docker-compose exec app artisan migrate
+```
+
+`Hay que cambiar los id por int(11) y relanzar hasta acabar con todas las migraciones`
+
+## Ubicación
+
+Este proyecto se va a hubicar dentro de una subcarpeta de Wordpress
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

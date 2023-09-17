@@ -8,16 +8,7 @@ class CreateTransporteTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        descripcion TEXT,
-        portada VARCHAR(255),
-        id_ciudad INT NOT NULL,
-        web VARCHAR(255),
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_ciudad) REFERENCES $wpdb->prefix . 'ciudad' (id)
+     *
      * @return void
      */
     public function up()

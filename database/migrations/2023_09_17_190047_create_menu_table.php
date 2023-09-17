@@ -8,15 +8,7 @@ class CreateMenuTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        alergenos TEXT,
-        cuerpo TEXT,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        id_novio INT NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id)
+     *
      * @return void
      */
     public function up()

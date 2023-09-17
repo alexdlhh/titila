@@ -8,17 +8,7 @@ class CreateNoviosTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        novio VARCHAR(255) NOT NULL,
-        novia VARCHAR(255) NOT NULL,
-        fecha_boda DATE NOT NULL,
-        habilitar INT NOT NULL,
-        publicar INT NOT NULL,
-        estado INT NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        programa TEXT,
-        PRIMARY KEY (id)
+     *
      * @return void
      */
     public function up()

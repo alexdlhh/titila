@@ -2,10 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invitados extends Model
+class Invitado extends Model
 {
-    use HasFactory;
+    protected $table = 'invitados';
+
+    protected $fillable = [
+        'nombre',
+        'invitados',
+        'confirmacion',
+        'menus',
+        'alergenos',
+        'email',
+        'telefono',
+        'id_novio',
+        'creation_date',
+        'update_date',
+    ];
+
+    protected $hidden = [];
+
+    public function novio()
+    {
+        return $this->belongsTo(Novio::class, 'id_novio');
+    }
 }

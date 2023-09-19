@@ -8,17 +8,7 @@ class CreateRegalosTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        link DATE NOT NULL,
-        mensaje TEXT,
-        portada VARCHAR(255),
-        estado INT NOT NULL,
-        id_novio INT NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id)
+     *
      * @return void
      */
     public function up()

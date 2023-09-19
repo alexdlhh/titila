@@ -8,25 +8,7 @@ class CreateNoviosPreferenciasTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        novio VARCHAR(255) NOT NULL,
-        novia VARCHAR(255) NOT NULL,
-        fecha_boda DATE NOT NULL,
-        fuente VARCHAR(255) NOT NULL,
-        color VARCHAR(255) NOT NULL,
-        font_size VARCHAR(255) NOT NULL,
-        mensaje TEXT,
-        id_media_svg INT NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        title_size VARCHAR(255),
-        color_fondo VARCHAR(255),
-        color_texto VARCHAR(255),
-        patron VARCHAR(255),
-        id_novio INT NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_media_svg) REFERENCES $wpdb->prefix . 'media_svg' (id)
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id)
+     *
      * @return void
      */
     public function up()
@@ -41,7 +23,7 @@ class CreateNoviosPreferenciasTable extends Migration
             $table->string('color');
             $table->string('font_size');
             $table->text('mensaje');
-            $table->integer('id_media_svg')->unsigned();
+            $table->bigInteger('id_media_svg')->unsigned();
             $table->date('creation_date');
             $table->date('update_date');
             $table->string('title_size');

@@ -8,15 +8,7 @@ class CreateLibroDeFirmasTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        mensaje TEXT,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        id_novio INT NOT NULL,
-        id_invitado INT NOT NULL,
-        slug VARCHAR(255) NOT NULL,
-        PRIMARY KEY (id)
+     *
      * @return void
      */
     public function up()

@@ -8,19 +8,7 @@ class CreateInvitadosTable extends Migration
 {
     /**
      * Run the migrations.
-     *id INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        invitados TEXT NOT NULL,
-        confirmacion INT,
-        menus VARCHAR(255),
-        alergenos TEXT,
-        email VARCHAR(255),
-        telefono VARCHAR(255),
-        id_novio INT NOT NULL,
-        creation_date DATE NOT NULL,
-        update_date DATE NOT NULL,
-        PRIMARY KEY (id),
-        FOREIGN KEY (id_novio) REFERENCES $wpdb->prefix . 'novios' (id)
+     *
      * @return void
      */
     public function up()

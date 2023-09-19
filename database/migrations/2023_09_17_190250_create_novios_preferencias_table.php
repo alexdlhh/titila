@@ -48,7 +48,7 @@ class CreateNoviosPreferenciasTable extends Migration
             $table->string('color_fondo');
             $table->string('color_texto');
             $table->string('patron');
-            $table->integer('id_novio')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_media_svg')->references('id')->on('media_svg');
             $table->foreign('id_novio')->references('id')->on('novios');
         });

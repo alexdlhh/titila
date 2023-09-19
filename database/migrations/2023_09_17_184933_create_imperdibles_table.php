@@ -22,7 +22,7 @@ class CreateImperdiblesTable extends Migration
             $table->text('descripcion');
             $table->string('web');
             $table->string('portada');
-            $table->integer('id_ciudad')->unsigned();
+            $table->bigInteger('id_ciudad')->unsigned();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
         });
     }

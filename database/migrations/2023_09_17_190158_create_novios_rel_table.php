@@ -16,8 +16,8 @@ class CreateNoviosRelTable extends Migration
         Schema::create('novios_rel', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('id_novio')->unsigned();
-            $table->integer('id_ciudad')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
+            $table->bigInteger('id_ciudad')->unsigned();
             $table->string('restaurantes');
             $table->string('actividades');
             $table->string('imperdibles');

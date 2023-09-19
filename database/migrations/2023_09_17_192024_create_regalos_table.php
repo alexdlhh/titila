@@ -31,7 +31,7 @@ class CreateRegalosTable extends Migration
             $table->text('mensaje');
             $table->string('portada');
             $table->integer('estado');
-            $table->integer('id_novio')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
             $table->date('creation_date');
             $table->date('update_date');
             $table->foreign('id_novio')->references('id')->on('novios');

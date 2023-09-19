@@ -21,7 +21,7 @@ class CreateMediaSvgTable extends Migration
             $table->string('tipo');
             $table->date('creation_date');
             $table->date('update_date');
-            $table->integer('id_ciudad')->unsigned();
+            $table->bigInteger('id_ciudad')->unsigned();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
         });
     }

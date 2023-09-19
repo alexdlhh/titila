@@ -21,7 +21,7 @@ class CreateMenuTable extends Migration
             $table->text('cuerpo');
             $table->date('creation_date');
             $table->date('update_date');
-            $table->integer('id_novio')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_novio')->references('id')->on('novios');
         });
     }

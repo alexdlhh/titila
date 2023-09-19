@@ -20,7 +20,7 @@ class CreateRestaurantesTable extends Migration
             $table->date('update_date');
             $table->text('descripcion');
             $table->string('portada');
-            $table->integer('id_ciudad')->unsigned();
+            $table->bigInteger('id_ciudad')->unsigned();
             $table->timestamps();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
         });

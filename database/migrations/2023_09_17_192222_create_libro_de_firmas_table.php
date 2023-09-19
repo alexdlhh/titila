@@ -28,8 +28,8 @@ class CreateLibroDeFirmasTable extends Migration
             $table->text('mensaje');
             $table->date('creation_date');
             $table->date('update_date');
-            $table->integer('id_novio')->unsigned();
-            $table->integer('id_invitado')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
+            $table->bigInteger('id_invitado')->unsigned();
             $table->string('slug');
         });
     }

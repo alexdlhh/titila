@@ -35,7 +35,7 @@ class CreateInvitadosTable extends Migration
             $table->text('alergenos');
             $table->string('email');
             $table->string('telefono');
-            $table->integer('id_novio')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
             $table->date('creation_date');
             $table->date('update_date');
             $table->foreign('id_novio')->references('id')->on('novios');

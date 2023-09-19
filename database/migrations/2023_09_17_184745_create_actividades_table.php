@@ -21,7 +21,7 @@ class CreateActividadesTable extends Migration
             $table->text('descripcion');
             $table->string('portada');
             $table->string('web');
-            $table->integer('id_ciudad')->unsigned();
+            $table->bigInteger('id_ciudad')->unsigned();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
         });
     }

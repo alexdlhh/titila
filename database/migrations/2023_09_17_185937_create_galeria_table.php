@@ -19,7 +19,7 @@ class CreateGaleriaTable extends Migration
             $table->date('creation_date');
             $table->date('update_date');
             $table->string('ruta');
-            $table->integer('id_novio')->unsigned();
+            $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_novio')->references('id')->on('novios');
         });
     }

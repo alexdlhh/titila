@@ -39,7 +39,7 @@ class HomeController extends Controller
         // Intenta autenticar al usuario
         if (Auth::attempt($credentials)) {
             // Redirige al usuario a la vista principal del panel
-            return response()->json(['success' => Auth::User()->role], 200);
+            return response()->json(['success' => Auth::user()->role], 200);
         }
 
         // Si la autenticación falla, muestra un error
@@ -98,7 +98,8 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function adminPanel(){
-        return view('admin.adminPanel');
+        $admin['section'] = 'adminPanel';
+        return view('admin.adminPanel')->with('admin', $admin);
     }
 
     /**
@@ -106,7 +107,8 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function saveTheDatePanel(){
-        return view('couple.saveTheDatePanel');
+        $admin['section'] = 'saveTheDatePanel';
+        return view('couple.saveTheDatePanel')->with('admin', $admin);
     }
 
     /**
@@ -114,6 +116,7 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function guestPanel(){
-        return view('guest.guestPanel');
+        $admin['section'] = 'guestPanel';
+        return view('guest.guestPanel')->with('admin', $admin);
     }
 }

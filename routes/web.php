@@ -18,30 +18,37 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/guestPanel', [HomeController::class, 'guestPanel'])->name('guestPanel');
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
-    //middleware role = admin
-    Route::group(['middleware' => ['role:admin']], function () {
-        /**
-         * CITY 
-         */
-        Route::get('/cityList', [CityController::class, 'cityList'])->name('cityList');
-        Route::get('/cityEdit/{id}', [CityController::class, 'cityEdit'])->name('cityEdit');
-        Route::post('/citySave', [CityController::class, 'citySave'])->name('citySave');
-        Route::post('/restaurantEdit/{id}', [CityController::class, 'restaurantEdit'])->name('restaurantEdit');
-        Route::post('/activityEdit/{id}', [CityController::class, 'activityEdit'])->name('activityEdit');
-        Route::post('/mustSeeEdit/{id}', [CityController::class, 'mustSeeEdit'])->name('mustSeeEdit');
-        Route::post('/estheticsEdit/{id}', [CityController::class, 'estheticsEdit'])->name('estheticsEdit');
-        Route::post('/accommodationEdit/{id}', [CityController::class, 'accommodationEdit'])->name('accommodationEdit');
-        Route::post('/transportEdit/{id}', [CityController::class, 'transportEdit'])->name('transportEdit');
-        Route::post('/cityDelete/{id}', [CityController::class, 'cityDelete'])->name('cityDelete');
-        /**
-         * COUPLE
-         */
-        Route::get('/coupleList', [CoupleController::class, 'coupleList'])->name('coupleList');
-        Route::get('/coupleGuestList', [CoupleController::class, 'coupleGuestList'])->name('coupleGuestList');
-        Route::get('/coupleEdit/{id}', [CoupleController::class, 'coupleEdit'])->name('coupleEdit');
-        Route::post('/coupleSave', [CoupleController::class, 'coupleSave'])->name('coupleSave');
-        Route::post('/coupleMenu', [CoupleController::class, 'coupleMenu'])->name('coupleMenu');
-        Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
-        Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
-    });
+    /**
+     * CITY 
+     */
+    Route::get('/cityList', [CityController::class, 'cityList'])->name('cityList');
+    Route::get('/cityEdit/{id}', [CityController::class, 'cityEdit'])->name('cityEdit');
+    Route::post('/citySave', [CityController::class, 'citySave'])->name('citySave');
+    Route::post('/cityDelete', [CityController::class, 'cityDelete'])->name('cityDelete');
+    /**
+     * CITY - COMPONENTS
+     */
+    Route::post('/restaurantEdit', [CityController::class, 'restaurantEdit'])->name('restaurantEdit');
+    Route::post('/restaurantDelete', [CityController::class, 'restaurantDelete'])->name('restaurantDelete');
+    Route::post('/activityEdit', [CityController::class, 'activityEdit'])->name('activityEdit');
+    Route::post('/activityDelete', [CityController::class, 'activityDelete'])->name('activityDelete');
+    Route::post('/mustSeeEdit', [CityController::class, 'mustSeeEdit'])->name('mustSeeEdit');
+    Route::post('/mustSeeDelete', [CityController::class, 'mustSeeDelete'])->name('mustSeeDelete');
+    Route::post('/estheticsEdit', [CityController::class, 'estheticsEdit'])->name('estheticsEdit');
+    Route::post('/estheticsDelete', [CityController::class, 'estheticsDelete'])->name('estheticsDelete');
+    Route::post('/accommodationEdit', [CityController::class, 'accommodationEdit'])->name('accommodationEdit');
+    Route::post('/accommodationDelete', [CityController::class, 'accommodationDelete'])->name('accommodationDelete');
+    Route::post('/transportEdit', [CityController::class, 'transportEdit'])->name('transportEdit');
+    Route::post('/transportDelete', [CityController::class, 'transportDelete'])->name('transportDelete');
+    
+    /**
+     * COUPLE
+     */
+    Route::get('/coupleList', [CoupleController::class, 'coupleList'])->name('coupleList');
+    Route::get('/coupleGuestList', [CoupleController::class, 'coupleGuestList'])->name('coupleGuestList');
+    Route::get('/coupleEdit/{id}', [CoupleController::class, 'coupleEdit'])->name('coupleEdit');
+    Route::post('/coupleSave', [CoupleController::class, 'coupleSave'])->name('coupleSave');
+    Route::post('/coupleMenu', [CoupleController::class, 'coupleMenu'])->name('coupleMenu');
+    Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
+    Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
 });

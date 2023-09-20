@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    <title>Register</title>
+    <title>Iniciar Sesión</title>
 @endsection
 
 @section('style')

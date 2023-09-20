@@ -11,9 +11,7 @@ class Patron extends Model
     protected $fillable = [
         'nombre',
         'ruta',
-        'ruta_negativo',
-        'creation_date',
-        'update_date',
+        'ruta_negativo'
     ];
 
     protected $hidden = [];

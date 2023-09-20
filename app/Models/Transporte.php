@@ -10,8 +10,6 @@ class Transporte extends Model
 
     protected $fillable = [
         'nombre',
-        'creation_date',
-        'update_date',
         'descripcion',
         'portada',
         'id_ciudad',

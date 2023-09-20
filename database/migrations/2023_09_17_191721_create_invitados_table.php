@@ -15,7 +15,6 @@ class CreateInvitadosTable extends Migration
     {
         Schema::create('invitados', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->text('invitados');
             $table->integer('confirmacion');
@@ -24,9 +23,8 @@ class CreateInvitadosTable extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->bigInteger('id_novio')->unsigned();
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->foreign('id_novio')->references('id')->on('novios');
+            $table->timestamps();
         });
     }
 

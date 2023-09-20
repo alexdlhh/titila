@@ -15,12 +15,10 @@ class CreateAjustesTable extends Migration
     {
         Schema::create('ajustes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->text('valor');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->unique('nombre', 'unique_nombre_ajustes');
+            $table->timestamps();
         });
     }
 

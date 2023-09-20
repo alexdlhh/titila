@@ -15,12 +15,10 @@ class CreateGaleriaTable extends Migration
     {
         Schema::create('galeria', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->string('ruta');
             $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_novio')->references('id')->on('novios');
+            $table->timestamps();
         });
     }
 

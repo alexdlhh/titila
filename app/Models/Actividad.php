@@ -9,11 +9,8 @@ class Actividad extends Model
 
     protected $fillable = [
         'nombre',
-        'creation_date',
-        'update_date',
         'descripcion',
         'portada',
-        'web',
         'id_ciudad',
     ];
 

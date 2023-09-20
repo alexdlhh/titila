@@ -14,15 +14,12 @@ class CreateActividadesTable extends Migration
     {
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->text('descripcion');
             $table->string('portada');
-            $table->string('web');
             $table->bigInteger('id_ciudad')->unsigned();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
+            $table->timestamps();
         });
     }
 

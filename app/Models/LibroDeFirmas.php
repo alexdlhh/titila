@@ -11,8 +11,6 @@ class LibroDeFirma extends Model
     protected $fillable = [
         'nombre',
         'mensaje',
-        'creation_date',
-        'update_date',
         'id_novio',
         'id_invitado',
         'slug',

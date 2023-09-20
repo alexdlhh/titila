@@ -15,14 +15,12 @@ class CreateMediaSvgTable extends Migration
     {
         Schema::create('media_svg', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->text('codigo');
             $table->string('tipo');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->bigInteger('id_ciudad')->unsigned();
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
+            $table->timestamps();
         });
     }
 

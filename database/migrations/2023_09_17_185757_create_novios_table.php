@@ -15,16 +15,14 @@ class CreateNoviosTable extends Migration
     {
         Schema::create('novios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('novio');
             $table->string('novia');
             $table->date('fecha_boda');
             $table->integer('habilitar');
             $table->integer('publicar');
             $table->integer('estado');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->text('programa');
+            $table->timestamps();
         });
     }
 

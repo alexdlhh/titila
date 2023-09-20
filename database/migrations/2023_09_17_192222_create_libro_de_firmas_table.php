@@ -15,14 +15,12 @@ class CreateLibroDeFirmasTable extends Migration
     {
         Schema::create('libro_de_firmas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->text('mensaje');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->bigInteger('id_novio')->unsigned();
             $table->bigInteger('id_invitado')->unsigned();
             $table->string('slug');
+            $table->timestamps();
         });
     }
 

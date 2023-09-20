@@ -15,16 +15,14 @@ class CreateRegalosTable extends Migration
     {
         Schema::create('regalos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->date('link');
             $table->text('mensaje');
             $table->string('portada');
             $table->integer('estado');
             $table->bigInteger('id_novio')->unsigned();
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->foreign('id_novio')->references('id')->on('novios');
+            $table->timestamps();
         });
     }
 

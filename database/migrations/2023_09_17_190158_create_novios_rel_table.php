@@ -15,7 +15,6 @@ class CreateNoviosRelTable extends Migration
     {
         Schema::create('novios_rel', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->bigInteger('id_novio')->unsigned();
             $table->bigInteger('id_ciudad')->unsigned();
             $table->string('restaurantes');
@@ -25,10 +24,9 @@ class CreateNoviosRelTable extends Migration
             $table->string('alojamiento');
             $table->string('transporte');
             $table->integer('id_media_svg')->unsigned();
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->foreign('id_novio')->references('id')->on('novios');
             $table->foreign('id_ciudad')->references('id')->on('ciudad');
+            $table->timestamps();
         });
     }
 

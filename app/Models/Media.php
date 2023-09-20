@@ -12,9 +12,7 @@ class Media extends Model
         'nombre',
         'ruta',
         'tipo',
-        'creation_date',
-        'update_date',
-        'id_ciudad',
+        'id_ciudad'
     ];
 
     protected $hidden = [];

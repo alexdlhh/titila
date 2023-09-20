@@ -19,8 +19,6 @@ class CreateCiudadTable extends Migration
             $table->string('alias');
             $table->text('descripcion');
             $table->string('portada');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->timestamps();
         });
     }

@@ -17,9 +17,7 @@ class NovioRel extends Model
         'estetica',
         'alojamiento',
         'transporte',
-        'id_media_svg',
-        'creation_date',
-        'update_date',
+        'id_media_svg'
     ];
 
     protected $hidden = [];

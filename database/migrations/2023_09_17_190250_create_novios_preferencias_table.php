@@ -15,7 +15,6 @@ class CreateNoviosPreferenciasTable extends Migration
     {
         Schema::create('novios_preferencias', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('novio');
             $table->string('novia');
             $table->date('fecha_boda');
@@ -24,8 +23,6 @@ class CreateNoviosPreferenciasTable extends Migration
             $table->string('font_size');
             $table->text('mensaje');
             $table->bigInteger('id_media_svg')->unsigned();
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->string('title_size');
             $table->string('color_fondo');
             $table->string('color_texto');
@@ -33,6 +30,7 @@ class CreateNoviosPreferenciasTable extends Migration
             $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_media_svg')->references('id')->on('media_svg');
             $table->foreign('id_novio')->references('id')->on('novios');
+            $table->timestamps();
         });
     }
 

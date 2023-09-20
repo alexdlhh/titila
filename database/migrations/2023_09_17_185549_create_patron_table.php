@@ -15,12 +15,10 @@ class CreatePatronTable extends Migration
     {
         Schema::create('patron', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->string('ruta');
             $table->string('ruta_negativo');
-            $table->date('creation_date');
-            $table->date('update_date');
+            $table->timestamps();
         });
     }
 

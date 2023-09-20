@@ -12,8 +12,6 @@ class Menu extends Model
         'nombre',
         'alergenos',
         'cuerpo',
-        'creation_date',
-        'update_date',
         'id_novio',
     ];
 

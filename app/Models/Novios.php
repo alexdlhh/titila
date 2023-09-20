@@ -15,8 +15,6 @@ class Novio extends Model
         'habilitar',
         'publicar',
         'estado',
-        'creation_date',
-        'update_date',
         'programa',
     ];
 

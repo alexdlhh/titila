@@ -16,9 +16,7 @@ class Invitado extends Model
         'alergenos',
         'email',
         'telefono',
-        'id_novio',
-        'creation_date',
-        'update_date',
+        'id_novio'
     ];
 
     protected $hidden = [];

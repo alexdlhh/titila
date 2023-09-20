@@ -13,9 +13,7 @@ class Ajuste extends Model
 
     protected $fillable = [
         'nombre',
-        'valor',
-        'creation_date',
-        'update_date',
+        'valor'
     ];
 
     public function getUniqueNombreAttribute()

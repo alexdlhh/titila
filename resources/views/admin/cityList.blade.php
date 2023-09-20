@@ -16,6 +16,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Ciudad</th>
                             <th>Última actualización</th>
                             <th>Opciones</th>
@@ -25,6 +26,7 @@
                         @if(!empty($cities))
                             @foreach($cities as $city)
                                 <tr>
+                                    <td class="center-align"><img src="{{asset('images/cities/'.$city->portada)}}" alt="{{$city->nombre}}" width="150px"></td>
                                     <td>{{$city->nombre}}</td>
                                     <td>{{$city->updated_at}}</td>
                                     <td>

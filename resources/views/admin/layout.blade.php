@@ -15,8 +15,22 @@
 @endphp
 
 <body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Titila</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/adminPanel">Dashboard</a></li>
+        <li><a href="/cityList">Ciudades</a></li>
+        <li><a href="/coupleList">Novios</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+
     <div class="row">
-        <div class="col s12 l2" id="columna">
+        <div class="col s12 l2 hide-on-med-and-down" id="columna">
             <ul class="collection">
                 <li class="collection-item {{$section=='adminPanel'?'active':''}}"><a href="/adminPanel">Dashboard</a></li>
                 <li class="collection-item {{$section=='cityList'?'active':''}}"><a href="/cityList">Ciudades</a></li>
@@ -31,5 +45,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     @yield('script')
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+        });
+    </script>
 </body>
 </html>

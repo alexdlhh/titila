@@ -9,8 +9,6 @@ class Galeria extends Model
     protected $table = 'galeria';
 
     protected $fillable = [
-        'creation_date',
-        'update_date',
         'ruta',
         'id_novio',
     ];

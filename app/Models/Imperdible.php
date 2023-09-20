@@ -10,8 +10,6 @@ class Imperdible extends Model
 
     protected $fillable = [
         'nombre',
-        'creation_date',
-        'update_date',
         'descripcion',
         'web',
         'portada',

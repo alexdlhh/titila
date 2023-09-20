@@ -28,18 +28,23 @@ Route::group(['middleware' => ['auth']], function () {
     /**
      * CITY - COMPONENTS
      */
-    Route::post('/restaurantEdit', [CityController::class, 'restaurantEdit'])->name('restaurantEdit');
     Route::post('/restaurantDelete', [CityController::class, 'restaurantDelete'])->name('restaurantDelete');
-    Route::post('/activityEdit', [CityController::class, 'activityEdit'])->name('activityEdit');
+    Route::post('/restaurantSave', [CityController::class, 'restaurantSave'])->name('restaurantSave');
+
     Route::post('/activityDelete', [CityController::class, 'activityDelete'])->name('activityDelete');
-    Route::post('/mustSeeEdit', [CityController::class, 'mustSeeEdit'])->name('mustSeeEdit');
+    Route::post('/activitySave', [CityController::class, 'activitySave'])->name('activitySave');
+
     Route::post('/mustSeeDelete', [CityController::class, 'mustSeeDelete'])->name('mustSeeDelete');
-    Route::post('/estheticsEdit', [CityController::class, 'estheticsEdit'])->name('estheticsEdit');
+    Route::post('/mustSeeSave', [CityController::class, 'mustSeeSave'])->name('mustSeeSave');
+
     Route::post('/estheticsDelete', [CityController::class, 'estheticsDelete'])->name('estheticsDelete');
-    Route::post('/accommodationEdit', [CityController::class, 'accommodationEdit'])->name('accommodationEdit');
+    Route::post('/estheticsSave', [CityController::class, 'estheticsSave'])->name('estheticsSave');
+
     Route::post('/accommodationDelete', [CityController::class, 'accommodationDelete'])->name('accommodationDelete');
-    Route::post('/transportEdit', [CityController::class, 'transportEdit'])->name('transportEdit');
+    Route::post('/accommodationSave', [CityController::class, 'accommodationSave'])->name('accommodationSave');
+    
     Route::post('/transportDelete', [CityController::class, 'transportDelete'])->name('transportDelete');
+    Route::post('/transportSave', [CityController::class, 'transportSave'])->name('transportSave');
     
     /**
      * COUPLE

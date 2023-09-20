@@ -12,9 +12,7 @@ class MediaSvg extends Model
         'nombre',
         'codigo',
         'tipo',
-        'creation_date',
-        'update_date',
-        'id_ciudad',
+        'id_ciudad'
     ];
 
     protected $hidden = [];

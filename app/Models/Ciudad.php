@@ -12,9 +12,7 @@ class Ciudad extends Model
         'nombre',
         'alias',
         'descripcion',
-        'portada',
-        'creation_date',
-        'update_date',
+        'portada'
     ];
 
     protected $hidden = [];

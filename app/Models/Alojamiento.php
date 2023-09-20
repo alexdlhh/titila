@@ -10,12 +10,9 @@ class Alojamiento extends Model
 
     protected $fillable = [
         'nombre',
-        'creation_date',
-        'update_date',
         'descripcion',
         'portada',
-        'id_ciudad',
-        'web',
+        'id_ciudad'
     ];
 
     protected $hidden = [];

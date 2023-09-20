@@ -15,14 +15,12 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->text('alergenos');
             $table->text('cuerpo');
-            $table->date('creation_date');
-            $table->date('update_date');
             $table->bigInteger('id_novio')->unsigned();
             $table->foreign('id_novio')->references('id')->on('novios');
+            $table->timestamps();
         });
     }
 

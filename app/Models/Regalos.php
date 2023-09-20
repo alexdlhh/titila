@@ -14,9 +14,7 @@ class Regalo extends Model
         'mensaje',
         'portada',
         'estado',
-        'id_novio',
-        'creation_date',
-        'update_date',
+        'id_novio'
     ];
 
     protected $hidden = [];

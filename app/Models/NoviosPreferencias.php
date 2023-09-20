@@ -17,8 +17,6 @@ class NovioPreferencia extends Model
         'font_size',
         'mensaje',
         'id_media_svg',
-        'creation_date',
-        'update_date',
         'title_size',
         'color_fondo',
         'color_texto',

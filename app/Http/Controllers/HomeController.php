@@ -82,8 +82,8 @@ class HomeController extends Controller
         $user->email = $credentials['email'];
         $user->password = Hash::make($credentials['password']);
         $user->role = $request->role;
-        $user->action = $request->action;
-        $user->place = $request->place;
+        $user->action = !empty($request->action)?$request->action:'';
+        $user->place = !empty($request->place)?$request->place:'';
         $user->save();
 
         // Inicia sesión con el usuario recién creado

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CoupleController;
+use App\Http\Controllers\SaveTheDateController;
 
 Route::get('/', [HomeController::class, 'login'])->name('login');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
@@ -57,3 +58,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
     Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
 });
+
+Route::get('/{couple}', [SaveTheDateController::class, 'couple'])->name('couple');

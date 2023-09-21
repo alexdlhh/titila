@@ -18,25 +18,25 @@
         </div>
         <div class="col s12">
             <div class="row">
-                <div class="col s3 card">
+                <div class="col s6 l3 card">
                     <div class="card-content">
                         <span class="card-title">Ciudades</span>
                         <p>10</p>
                     </div>
                 </div>
-                <div class="col s3 card">
+                <div class="col s6 l3 card">
                     <div class="card-content">
                         <span class="card-title">Novios</span>
                         <p>10</p>
                     </div>
                 </div>
-                <div class="col s3 card">
+                <div class="col s6 l3 card">
                     <div class="card-content">
                         <span class="card-title">Invitaciones</span>
                         <p>10</p>
                     </div>
                 </div>
-                <div class="col s3 card">
+                <div class="col s6 l3 card">
                     <div class="card-content">
                         <span class="card-title">Pendientes</span>
                         <p>10</p>

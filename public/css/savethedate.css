@@ -1,0 +1,255 @@
+/**
+cargar D:\WorkSpace\titila-external\public\fonts\GillSans.ttc
+*/
+@font-face {
+    font-family: 'GillSans';
+    src: url('/fonts/GillSans.ttc');
+}
+@font-face {
+    font-family: 'Meddon';
+    src: url('/fonts/Meddon-Regular.ttf');
+}
+@font-face {
+    font-family: 'PetitFormalScript';
+    src: url('/fonts/PetitFormalScript-Regular.ttf');
+}
+@font-face {
+    font-family: 'YsabeauInfant';
+    src: url('/fonts/YsabeauInfant-VariableFont_wght.ttf');
+}
+nav{
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0) !important;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0) !important;
+}
+#title{
+    font-family: 'Meddon';
+    font-size: 50px;
+    color: #766422;
+    text-align: center;
+}
+body > div.container > nav > div > ul > li > a{
+    margin:0 !important;
+}
+.libro_link{
+    font-family: 'GillSans' !important;
+    background-color: white !important;
+    border: 1px solid #766422 !important;
+    color: #766422 !important;
+    position: relative;
+    top: 50px;
+}
+.libro_link_full{
+    font-family: 'GillSans' !important;
+    background-color: #766422 !important;
+    border: 1px solid #766422 !important;
+    color: white !important;
+    position: relative;
+    top: 50px;
+}
+.divFecha{
+    padding-top: 20px !important;
+    text-align: center;
+}
+.divFecha span{
+    font-family: 'PetitFormalScript';
+    font-size: 50px;
+    color: #000000;
+    text-align: center;
+}
+.location{
+    font-family: 'GillSans';
+    font-size: 15px;
+    color: #000000;
+    text-align: center;
+    padding-top: 50px !important;
+}
+.bigBorder{
+    width: 50%;
+    margin: 0 auto;
+    height: 3px;
+    background-color: #766422;
+}
+.imagen{
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+.zone{
+    z-index: 1;
+    background-color: #766422;
+    padding-top:150px !important;
+    text-align: center;
+    top: -75px;
+    position: relative;
+}
+.textoZone{
+    color: white;
+    font-family: 'GillSans' !important;
+}
+.linkHead{
+    font-family: 'GillSans';
+    color: #080808 !important;
+    font-weight: bold !important;
+}
+.linkHead:hover{
+    color: #766422 !important;
+}
+.active{
+    color: #766422 !important;
+}
+.headZone{
+    text-align: center;
+}
+.linkHead{
+    font-size: 1em;
+    padding:5px;
+}
+.footer{
+    background-color: #766422;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+.footer p{
+    font-family: 'GillSans';
+    color: white;
+    text-align: center;
+}
+#programa{
+    border: 1px solid #080808;
+    padding-bottom: 150px;
+}
+.subtitle{
+    font-family: 'PetitFormalScript';
+    font-size: 30px;
+    color: #766422;
+    text-align: center;
+}
+.cityTitle{
+    font-family: 'PetitFormalScript';
+    color: #080808;
+}
+.textCity{
+    font-family: 'GillSans';
+    text-align: center;
+    padding-top: 20px;
+    position: relative;
+    top: -100px;
+}
+.textCity p{
+    font-family: 'GillSans';
+    color:#766422;
+}
+#lista_regalos{
+    font-family: 'GillSans';
+    color: #766422;
+    text-decoration: none;
+    text-align: center;
+}
+.linea_fina{
+    width: 70px;
+    height: 1px;
+    background-color: #766422;
+    display: inline-block;
+    top: 0px;
+    position: relative;
+    margin: 5px;
+}
+.title2{
+    font-size: 20px;
+}
+.colored{
+    font-family: 'GillSans';
+    color: #766422;
+    font-weight: bold;
+}
+.centrar{
+    text-align: center;
+}
+.padText{
+    font-family: 'GillSans';
+    padding-top: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.padText p{
+    line-height: 1;
+}
+.subtitle{
+    margin-top: 120px;
+}
+.cityTitle{
+    text-align: center;
+    position: relative;
+    top: -100px;
+}
+.infoText{
+    
+}
+#city{
+    border: 2px solid #766422;
+    margin-top: 200px;
+}
+.cityImg{
+    position: relative;
+    text-align: center;
+    top: -100px;
+}
+.cityImg img{
+    width: 50%;
+}
+.powered{
+    font-family: 'GillSans';
+    text-align: center;
+    padding:30px;
+}
+.ultrapadding{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+@media only screen and (max-width: 600px) {
+    .divFecha span {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .location {
+        font-family: 'GillSans';
+        font-size: 10px;
+        color: #000000;
+        text-align: center;
+        padding-top: 11px !important;
+        padding-bottom: 103px !important;
+    }
+    .imagen {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        top: 50px;
+    }
+    .zone {
+        z-index: 1;
+        background-color: #766422;
+        padding-top: 68px !important;
+        text-align: center;
+        top: -75px;
+        position: relative;
+    }
+    .linea_fina {
+        width: 28px;
+        height: 1px;
+        background-color: #766422;
+        display: inline-block;
+        top: 0px;
+        position: relative;
+        margin: 5px;
+    }
+    .enlinea{
+        display: flex;
+        padding-bottom: 30px;
+    }
+    #programa > h2:nth-child(7){
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

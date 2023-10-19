@@ -9,11 +9,12 @@
 @endsection
 
 @section('content')
-    <h1 id="title">{{str_replace('-',' ',$couple)}}</h1>
+    <div style="clear:both;"></div>
+    <div id="title"><p>{{str_replace('-',' ',$couple)}}<p></div>
     <div class="row">
         <div class="col s12">
             <div class="row">
-                <div class="col l6 offset-l3 s12 headZone">
+                <div class="col l6 offset-l3 s10 offset-s2 headZone">
                     <a href="#programa" class="linkHead">{{$lang->_t('PROGRAMA',$_lang)}}</a>
                     <a href="#src" class="linkHead">{{$lang->_t('SRC',$_lang)}}</a>
                     <a href="#fotos" class="linkHead">{{$lang->_t('FOTOS',$_lang)}}</a>
@@ -40,7 +41,7 @@
             <p class="textoZone">{{$lang->_t('EN ESTA PÁGINA IREMOS COMPARTIENDO TODA LA INFORMACIÓN QUE NECESITAS. ¡TE ESPERAMOS EN SEVILLA!',$_lang)}}"</p>
             <p class="textoZone">-Arianna & Tomas</p>
         </div>
-        <div class="col s12">
+        <div class="col s12 program">
             <div class="row">
                 <div class="col l6 offset-l3 s10 offset-s1" id="programa">
                     <h2 class="subtitle">{{$lang->_t('Programa',$_lang)}}</h2>
@@ -77,10 +78,16 @@
                         <p>{{$lang->_t('BEBIDAS SIN ALCOHOL',$_lang)}}</p>
                         <p>{{$lang->_t('CAFE/TE',$_lang)}}</p>
                     </div>
-                    <div class="colored centrar lista_regalos"><div class="linea_fina"></div><a href="#gift" id="lista_regalos" class="modal-trigger">{{$lang->_t('LISTA DE REGALOS',$_lang)}}</a><div class="linea_fina"></div></div>
-                    <div class="padText">
+                </div>
+            </div>
+        </div>
+        <div class="col s12" id="program_config">
+            <div class="row">
+                <div class="col l6 offset-l3 s10 offset-s1">
+                    <div class="confirmar_box">
                         <a href="#confirmar" class="waves-effect waves-light btn-large libro_link_full modal-trigger">{{$lang->_t('CONFIRMAR ASISTENCIA',$_lang)}}</a>
                     </div>
+                    <div class="colored centrar lista_regalos"><div class="linea_fina"></div><a href="#gift" id="lista_regalos" class="modal-trigger">{{$lang->_t('LISTA DE REGALOS',$_lang)}}</a><div class="linea_fina"></div></div>
                     <h2 class="subtitle">{{$lang->_t('Alojamiento',$_lang)}}</h2>
                     <div class="padText">
                         <p>{{$lang->_t('HOTEL (5 ESTRELLAS)',$_lang)}}</p>

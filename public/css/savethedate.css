@@ -27,6 +27,7 @@ nav{
     font-size: 50px;
     color: #766422;
     text-align: center;
+    padding-top: 60px;
 }
 body > div.container > nav > div > ul > li > a{
     margin:0 !important;
@@ -119,6 +120,7 @@ body > div.container > nav > div > ul > li > a{
 #programa{
     border: 1px solid #080808;
     padding-bottom: 150px;
+    margin-top: 30px;
 }
 .subtitle{
     font-family: 'PetitFormalScript';
@@ -183,18 +185,20 @@ body > div.container > nav > div > ul > li > a{
     text-align: center;
     position: relative;
     top: -100px;
+    font-size: 33px;
 }
 .infoText{
     
 }
 #city{
-    border: 2px solid #766422;
+    border: 1px solid #766422;
     margin-top: 200px;
 }
 .cityImg{
     position: relative;
     text-align: center;
-    top: -100px;
+    top: -140px;
+
 }
 .cityImg img{
     width: 50%;
@@ -231,13 +235,79 @@ a.linkRs {
     margin-left: 10px;
     margin-right: 10px;
 }
-@media only screen and (max-width: 600px) {
+#title{
+    text-align: center;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+html{
+    overflow-x: hidden;
+}
+.confirmar_box{
+    padding-top:30px;
+    text-align: center;
+    padding-bottom: 60px;
+}
+.lista_regalos{
+    position: relative;
+    top: 75px;
+}
+.lista_regalos {
+    position: relative;
+    top: 75px;
+    margin-bottom: 160px;
+}
+@media only screen and (max-width: 1000px) {
+    .zone {
+    	top: 0px;
+	padding-bottom: 60px !important;
+	padding-top: 54px !important;
+    }
+    .imagen img{
+	position: relative;
+    	top: 40px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .imagen img{
+	position: relative;
+    	top: 0px;
+    }
+    #program_config{
+	margin-bottom: 35px;
+    }
+    #programa{
+        padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
+    }
+    .confirmar_box {
+    	padding-top: 30px;
+    }
+    body {
+    	margin: 0;
+    	overflow-x: hidden;
+    }
+    .subtitle {
+    	margin-top: 0px;
+    }
+    .padText {
+        font-family: 'GillSans';
+        padding-top: 20px;
+        text-align: center;
+        padding-bottom: 70px;
+    }
+    .program{
+	position: relative;
+    	top: -40px;
+    }
     .brand-logo {
         position: relative !important;
         left: 10.5% !important;
     }
     .enlinea_div{
-        width: 50%;
+        width: 40%;
         float: right;
     }
     ul.enlinea {
@@ -250,7 +320,7 @@ a.linkRs {
         font-size: 14px !important;
     }
     .padText p {
-        line-height: 1;
+        line-height: 1.5;
         margin-top: 1px;
         margin-bottom: 1px;
         font-weight: bold;
@@ -328,6 +398,7 @@ a.linkRs {
         max-width: 150%;
         width: 112% !important;
         left: -21px !important;
+	padding-bottom: 60px !important;
     }
     .linea_fina {
         width: 28px;
@@ -363,4 +434,10 @@ a.linkRs {
         padding-top: 0px;
         padding-bottom: 40px;
     }
+}
+@media only screen and (max-width: 600px) {
+    .enlinea_div{
+        width: 50%;
+    }
+
 }

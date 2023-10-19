@@ -13,6 +13,16 @@ use App\Models\Imperdible;
 use App\Models\Estetica;
 use App\Models\Alojamiento;
 use App\Models\Transporte;
+use App\Models\Invitados;
+use App\Models\Galeria;
+use App\Models\Media;
+use App\Models\MediaSvg;
+use App\Models\Menu;
+use App\Models\Novios;
+use App\Models\NoviosRel;
+use App\Models\Patron;
+use App\Models\Regalos;
+use App\Models\NoviosPreferencias;
 
 class CoupleController extends Controller
 {
@@ -35,6 +45,407 @@ class CoupleController extends Controller
     }
 
     /**
-     * 
+     * lista de invitados de la pareja
+     * @return \Illuminate\View\View
      */
+    public function coupleList(){
+        $this->checkRole();
+        $novios = Novios::all();
+        return view('couple.list',['novios' => $novios]);
+    }
+
+    /**
+     * lista de invitados de la pareja
+     * @return \Illuminate\View\View
+     */
+    public function coupleGuestList(){
+        $this->checkRole();
+        $novios = Novios::all();
+        $invitados = Invitados::all();
+        return view('couple.guestList',['novios' => $novios, 'invitados' => $invitados]);
+    }
+
+    /**
+     * editamos la pareja
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function coupleEdit($id){
+        $this->checkRole();
+        $novios = Novios::where('id', $id)->first();
+        $novios_rel = NoviosRel::where('id_novio', $id)->get();
+        $novios_rel_arr = [];
+        foreach($novios_rel as $novio_rel){
+            $novios_rel_arr[] = $novio_rel->id_invitado;
+        }
+        $invitados = Invitados::all();
+        return view('couple.edit',['novios' => $novios, 'invitados' => $invitados, 'novios_rel' => $novios_rel_arr]);
+    }
+
+    /**
+     * Guardamos la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleSave(Request $request){
+        $this->checkRole();
+        $id = $request->id;
+        if(!empty($id)){
+            $novios = Novios::where('id', $id)->first();
+        }else{
+            $novios = new Novios();
+        }
+        $novios->novio = $request->novio;
+        $novios->novia = $request->novia;
+        $novios->fecha_boda = $request->fecha_boda;
+        $novios->habilitar = $request->habilitar;
+        $novios->publicar = $request->publicar;
+        $novios->estado = $request->estado;
+        $novios->programa = $request->programa;
+        $novios->save();
+        return response()->json([
+            'novios' => $novios,
+        ]);
+    }
+
+    /**
+     * guardamos el menu de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleMenu(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $menu = Menu::where('id_novio', $id_novio)->first();
+        }else{
+            $menu = new Menu();
+        }
+        $menu->id_novio = $request->id_novio;
+        $menu->cuerpo = $request->cuerpo;
+        $menu->alergenos = $request->alergenos;
+        $menu->nombre = $request->nombre;
+        $menu->save();
+        return response()->json([
+            'menu' => $menu,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de alojamiento de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleAccomodaionRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->alojamiento = $request->alojamiento;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de transporte de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleTransportRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->transporte = $request->transporte;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de imperdibles de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleMustSeeRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->imperdibles = $request->imperdibles;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de estetica de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleEsteticaRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->estetica = $request->estetica;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de actividades de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleActividadesRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->actividades = $request->actividades;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de restaurantes de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleRestaurantesRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->restaurantes = $request->restaurantes;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de ciudad de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleCityRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $request->id_novio;
+        $novios_rel->id_ciudad = $request->id_ciudad;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * guardamos la relacion de media de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleMediaSVGRel(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        $id_media_svg = $request->id_media_svg;
+        if(!empty($id_novio)){
+            $novios_rel = NoviosRel::where('id_novio', $id_novio)->where('id_media_svg', $id_media_svg)->first();
+        }else{
+            $novios_rel = new NoviosRel();
+        }
+        $novios_rel->id_novio = $id_novio;
+        $novios_rel->id_media_svg = $id_media_svg;
+        $novios_rel->save();
+        return response()->json([
+            'novios_rel' => $novios_rel,
+        ]);
+    }
+
+    /**
+     * Escritorio de la pareja
+     * @return \Illuminate\View\View
+     */
+    public function coupleDash(){
+        $this->checkRole();
+        $novios = Novios::where('id_user', Auth::user()->place)->first();
+        $novios_rel = NoviosRel::where('id_novio', $novios->id)->get();
+        $novios_rel_arr = [];
+        foreach($novios_rel as $novio_rel){
+            $novios_rel_arr[] = $novio_rel->id_invitado;
+        }
+        $invitados = Invitados::all();
+        return view('couple.dashboard',['novios' => $novios, 'invitados' => $invitados, 'novios_rel' => $novios_rel_arr]);
+    }
+
+    /**
+     * Lista de invitados de la pareja
+     * @return \Illuminate\View\View
+     */
+    public function coupleContacts(){
+        $this->checkRole();
+        $novios = Novios::where('id_user', Auth::user()->place)->first();
+        $novios_rel = NoviosRel::where('id_novio', $novios->id)->get();
+        $novios_rel_arr = [];
+        foreach($novios_rel as $novio_rel){
+            $novios_rel_arr[] = $novio_rel->id_invitado;
+        }
+        $invitados = Invitados::all();
+        return view('couple.guest',['novios' => $novios, 'invitados' => $invitados, 'novios_rel' => $novios_rel_arr]);
+    }
+
+    /**
+     * Vista de Diseño de la pareja
+     * @return \Illuminate\View\View
+     */
+    public function coupleDesing(){
+        $this->checkRole();
+        $novios = Novios::where('id_user', Auth::user()->place)->first();
+        $novios_rel = NoviosRel::where('id_novio', $novios->id)->get();
+        $novios_rel_arr = [];
+        foreach($novios_rel as $novio_rel){
+            $novios_rel_arr[] = $novio_rel->id_invitado;
+        }
+        $invitados = Invitados::all();
+        return view('couple.desing',['novios' => $novios, 'invitados' => $invitados, 'novios_rel' => $novios_rel_arr]);
+    }
+
+    /**
+     * Añadimos un invitado a la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addContact(Request $request){
+        $this->checkRole();
+        $invitado = new Invitados();
+        $invitado->nombre = $request->nombre;
+        $invitado->invitados = $request->invitados;
+        $invitado->confirmacion = $request->confirmacion;
+        $invitado->email = $request->email;
+        $invitado->telefono = $request->telefono;
+        $invitado->id_novio = $request->id_novio;
+        $invitado->save();
+        return response()->json([
+            'invitado' => $invitado,
+        ]);
+    }
+
+    /**
+     * Añadirmos invitados del csv a la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addContactCSV(Request $request){
+        $this->checkRole();
+        $file = $request->file('file');
+        $csv = array_map('str_getcsv', file($file));
+        $csv = array_slice($csv, 1);
+        foreach($csv as $row){
+            $invitado = new Invitados();
+            $invitado->nombre = $row[0];
+            $invitado->invitados = $row[1];
+            $invitado->confirmacion = $row[2];
+            $invitado->email = $row[3];
+            $invitado->telefono = $row[4];
+            $invitado->id_novio = $request->id_novio;
+            $invitado->save();
+        }
+        return response()->json([
+            'invitado' => $invitado,
+        ]);
+    }
+
+    /**
+     * Añadimos imagen a la galeria de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleGaleriaRel(Request $request){
+        $this->checkRole();
+        $file = $request->file('file');
+        $galeria = new Galeria();
+        $galeria->ruta = $file->store('galeria');
+        $galeria->id_novio = $request->id_novio;
+        $galeria->save();
+        return response()->json([
+            'galeria' => $galeria,
+        ]);
+    }
+
+    /**
+     * Guardamos las preferencias de diseño de la pareja
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleSavePref(Request $request){
+        $this->checkRole();
+        $id_novio = $request->id_novio;
+        if(!empty($id_novio)){
+            $novios_preferencias = NoviosPreferencias::where('id_novio', $id_novio)->first();
+        }else{
+            $novios_preferencias = new NoviosPreferencias();
+        }
+        $novios_preferencias->novio = $request->novio;
+        $novios_preferencias->novia = $request->novia;
+        $novios_preferencias->fecha_boda = $request->fecha_boda;
+        $novios_preferencias->fuente = $request->fuente;
+        $novios_preferencias->color = $request->color;
+        $novios_preferencias->font_size = $request->font_size;
+        $novios_preferencias->mensaje = $request->mensaje;
+        $novios_preferencias->id_media_svg = $request->id_media_svg;
+        $novios_preferencias->title_size = $request->title_size;
+        $novios_preferencias->color_fondo = $request->color_fondo;
+        $novios_preferencias->color_texto = $request->color_texto;
+        $novios_preferencias->patron = $request->patron;
+        $novios_preferencias->id_novio = $request->id_novio;
+        $novios_preferencias->save();
+        return response()->json([
+            'novios_preferencias' => $novios_preferencias,
+        ]);
+    }
+
 }

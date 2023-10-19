@@ -13,7 +13,7 @@
     <div class="container">
         <nav>
             <div class="nav-wrapper">
-                <a class="brand-logo"><img src="/titila.png" alt="Titila" width="200"></a>
+                <a class="brand-logo"><img src="/titila.png" alt="Titila"></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
                     <li><a class="waves-effect waves-light btn-large {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
@@ -21,14 +21,12 @@
                 </ul>
             </div>
         </nav>
-        <div class="row show-on-medium hide-on-large-only">
-            <div class="col s12">
-                <ul class="enlinea">
-                    <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
-                    <li><a class="waves-effect waves-light btn-large setEs {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
-                    <li><a class="waves-effect waves-light btn-large setEn {{$_lang=='en'?'libro_link_full':'libro_link'}}">EN</a></li>
-                </ul>
-            </div>
+        <div class="enlinea_div show-on-medium hide-on-large-only">
+            <ul class="enlinea">
+                <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
+                <li><a class="waves-effect waves-light btn-large setEs {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
+                <li><a class="waves-effect waves-light btn-large setEn {{$_lang=='en'?'libro_link_full':'libro_link'}}">EN</a></li>
+            </ul>
         </div>
         @yield('content')
     </div>

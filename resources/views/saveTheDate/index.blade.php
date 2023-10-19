@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <h1 id="title">{{$couple}}</h1>
+    <h1 id="title">{{str_replace('-',' ',$couple)}}</h1>
     <div class="row">
         <div class="col s12">
             <div class="row">
@@ -21,15 +21,15 @@
                 </div>
             </div>
         </div>
-        <div class="col s3 divFecha">
+        <div class="col l3 s1 divFecha">
             <span>31</span><br>
             <span>08</span><br>
             <span>24</span>
         </div>
-        <div class="col s6 imagen">
+        <div class="col l6 s11 imagen">
             <img src="\images\saveTheDate\WhatsApp Image 2023-09-15 at 18.13.57.jpeg" class="responsive-img" alt="">
         </div>
-        <div class="col s3 location">
+        <div class="col l3 s12 location">
             <p>HACIENDA LOS MOLINOS</p>
             <div class="bigBorder"></div>
             <p>SEVILLA</p>
@@ -42,7 +42,7 @@
         </div>
         <div class="col s12">
             <div class="row">
-                <div class="col l6 offset-l3 s8 offset-s2" id="programa">
+                <div class="col l6 offset-l3 s10 offset-s1" id="programa">
                     <h2 class="subtitle">{{$lang->_t('Programa',$_lang)}}</h2>
                     <div class="padText">
                         <p>11:00 am . {{$lang->_t('Ceremonia',$_lang)}}</p>
@@ -53,7 +53,7 @@
                         <p>-</p>
                         <p>9:00 pm . {{$lang->_t('Fiesta',$_lang)}}</p>
                     </div>
-                    <h2 class="subtitle">{{$lang->_t('menú',$_lang)}}</h2>
+                    <h2 class="subtitle">{{$lang->_t('Menú',$_lang)}}</h2>
                     <div class="padText">
                         <p>{{$lang->_t('ENTRANTES',$_lang)}}</p>
                         <p>{{$lang->_t('Entrante 1',$_lang)}}</p>
@@ -77,9 +77,9 @@
                         <p>{{$lang->_t('BEBIDAS SIN ALCOHOL',$_lang)}}</p>
                         <p>{{$lang->_t('CAFE/TE',$_lang)}}</p>
                     </div>
-                    <div class="colored centrar"><div class="linea_fina"></div><a href="#gift" id="lista_regalos" class="modal-trigger">{{$lang->_t('LISTA DE REGALOS',$_lang)}}</a><div class="linea_fina"></div></div>
+                    <div class="colored centrar lista_regalos"><div class="linea_fina"></div><a href="#gift" id="lista_regalos" class="modal-trigger">{{$lang->_t('LISTA DE REGALOS',$_lang)}}</a><div class="linea_fina"></div></div>
                     <div class="padText">
-                        <a href="#confirmar" class="waves-effect waves-light btn-large libro_link_full modal-trigger">{{$lang->_t('CONFIRMAR',$_lang)}}</a>
+                        <a href="#confirmar" class="waves-effect waves-light btn-large libro_link_full modal-trigger">{{$lang->_t('CONFIRMAR ASISTENCIA',$_lang)}}</a>
                     </div>
                     <h2 class="subtitle">{{$lang->_t('Alojamiento',$_lang)}}</h2>
                     <div class="padText">
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12" id="city">
+        <div class="col s10 offset-s1" id="city">
             <div class="row">
                 <div class="col s12 cityImg">
                     <img src="\images\cities\sevilla.jpg" class="responsive-img">
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="col l6 s12 centrar">
-                    <h3 class="colored ultrapadding title2"><b>{{$lang->_t('IMPERDIBLES',$_lang)}}</b></h3>
+                    <h3 class="colored ultrapadding2 title2"><b>{{$lang->_t('IMPERDIBLES',$_lang)}}</b></h3>
                     <div class="infoText">
                         <b class="colored"><b>{{$lang->_t('Real Alcázar de Sevilla',$_lang)}}</b></b>
                         <p>{{$lang->_t('Visita uno de los palacios reales más antiguos y activos del mundo',$_lang)}}</p>
@@ -161,11 +161,11 @@
                 <div class="col s12 powered">
                     <p><b>powered by TITILA</b></p>
                 </div>
-                <div class="col s12">
-                    <a href="" class="linkRs"></a>
-                    <a href="" class="linkRs"></a>
-                    <a href="" class="linkRs"></a>
-                    <a href="" class="linkRs"></a>
+                <div class="col s12 centrar">
+                    <a href="" class="linkRs linkRs1"><img src="\images\home.png" alt=""></a>
+                    <a href="" class="linkRs linkRs2"><img src="\images\instagram.png" alt=""></a>
+                    <a href="" class="linkRs linkRs3"><img src="\images\pinterest.png" alt=""></a>
+                    <a href="" class="linkRs linkRs4"><img src="\images\facebook.png" alt=""></a>
                 </div>
             </div>
         </div>

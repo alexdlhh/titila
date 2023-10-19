@@ -88,3 +88,4 @@ $labels['92eb39a1407d02c39fc0403548241472'] = 'Close';
 
 $labels['78b68d5424dd547addb9755567227755'] = 'Paseo náutico. Fue uno de los puertos más importantes del mundo';
 $labels['bd362577e734989661aa1bc6bc8296de'] = 'menu';
+$labels['a29ac065e918d25f614de72d9a62a2dc'] = 'Menú';

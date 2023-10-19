@@ -57,6 +57,35 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/coupleMenu', [CoupleController::class, 'coupleMenu'])->name('coupleMenu');
     Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
     Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
-});
+    Route::post('/coupleMustSeeRel', [CoupleController::class, 'coupleMustSeeRel'])->name('coupleMustSeeRel');
+    Route::post('/coupleEsteticRel', [CoupleController::class, 'coupleEsteticRel'])->name('coupleEsteticRel');
+    Route::post('/coupleActivityRel', [CoupleController::class, 'coupleActivityRel'])->name('coupleActivityRel');
+    Route::post('/coupleRestaurantRel', [CoupleController::class, 'coupleRestaurantRel'])->name('coupleRestaurantRel');
+    Route::post('/coupleCityRel', [CoupleController::class, 'coupleCityRel'])->name('coupleCityRel');
+    Route::post('/coupleMediaSVGRel', [CoupleController::class, 'coupleMediaSVGRel'])->name('coupleMediaSVGRel');
 
-Route::get('/{couple}', [SaveTheDateController::class, 'couple'])->name('couple');
+    /**
+     * NOVIOS PANEL
+     */
+    Route::get('/couple/Dash', [CoupleController::class, 'coupleDash'])->name('coupleDash');
+    Route::get('/couple/Contacts', [CoupleController::class, 'coupleContacts'])->name('coupleContacts');
+    Route::get('/couple/Desing', [CoupleController::class, 'coupleDesing'])->name('coupleDesing');
+    Route::post('/couple/addContact', [CoupleController::class, 'addContact'])->name('addContact');
+    Route::post('/couple/addContactCSV', [CoupleController::class, 'addContactCSV'])->name('addContactCSV');
+    Route::post('/coupleGaleriaRel', [CoupleController::class, 'coupleGaleriaRel'])->name('coupleGaleriaRel');
+    Route::post('/coupleSavePref', [CoupleController::class, 'coupleSavePref'])->name('coupleSavePref');
+
+});
+/**
+ * FAMILYBOOK
+ */
+Route::post('/familybook/get', [SaveTheDateController::class, 'familybookGet'])->name('familybookGet');
+Route::post('/familybook/insert', [SaveTheDateController::class, 'familybookInsert'])->name('familybookInsert');
+/**
+ * CONFIRMATION
+ */
+Route::post('/confirmation/insert', [SaveTheDateController::class, 'confirmationInsert'])->name('confirmationInsert');
+ /**
+  * SAVE THE DATE
+  */
+Route::get('/{couple}/{hash}', [SaveTheDateController::class, 'couple'])->name('couple');

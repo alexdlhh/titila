@@ -11,3 +11,6 @@
 .active a{
     color: #f5f5f5 !important;
 }
+.card-title{
+    font-weight: bold;
+}

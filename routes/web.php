@@ -50,10 +50,11 @@ Route::group(['middleware' => ['auth']], function () {
     /**
      * COUPLE
      */
-    Route::get('/coupleList', [CoupleController::class, 'coupleList'])->name('coupleList');
+    Route::get('/coupleList/{nombre?}/{fecha?}/{estado?}', [CoupleController::class, 'coupleList'])->name('coupleList');//AQUI ESTAMOS DICIENDO QUE coupleList, acepta de forma opcional $nombre,$fecha y $estado
     Route::get('/coupleGuestList', [CoupleController::class, 'coupleGuestList'])->name('coupleGuestList');
     Route::get('/coupleEdit/{id}', [CoupleController::class, 'coupleEdit'])->name('coupleEdit');
     Route::post('/coupleSave', [CoupleController::class, 'coupleSave'])->name('coupleSave');
+    Route::post('/coupleDelete', [CoupleController::class, 'coupleDelete'])->name('coupleDelete');
     Route::post('/coupleMenu', [CoupleController::class, 'coupleMenu'])->name('coupleMenu');
     Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
     Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
@@ -74,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/couple/addContactCSV', [CoupleController::class, 'addContactCSV'])->name('addContactCSV');
     Route::post('/coupleGaleriaRel', [CoupleController::class, 'coupleGaleriaRel'])->name('coupleGaleriaRel');
     Route::post('/coupleSavePref', [CoupleController::class, 'coupleSavePref'])->name('coupleSavePref');
+    
 
 });
 /**

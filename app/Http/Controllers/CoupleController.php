@@ -46,12 +46,41 @@ class CoupleController extends Controller
 
     /**
      * lista de invitados de la pareja
+     * @param String $nombre
+     * @param String $fecha
+     * @param int $estado
      * @return \Illuminate\View\View
      */
-    public function coupleList(){
+    public function coupleList($nombre = '0', $fecha = '0', $estado = '0'){//AQUI ESTAMOS DICIENDO QUE SI $nombre no tiene valor, le asignamos null, y asi con los demas
         $this->checkRole();
-        $novios = Novios::all();
-        return view('couple.list',['novios' => $novios]);
+    
+        // Inicia la consulta
+        $query = Novios::query();
+    
+        // Aplica los filtros si se proporcionan los parámetros
+        if ($nombre!='0') {
+            $query->where('novio', 'LIKE', '%' . $nombre . '%')->orWhere('novia', 'LIKE', '%' . $nombre . '%');
+        }
+    
+        if ($fecha!='0') {
+            $query->where('fecha_boda', 'LIKE', '%' . $fecha . '%');
+        }
+    
+        if ($estado!='0') {
+            $query->where('estado', $estado);
+        }
+    
+        // Ejecuta la consulta
+        $listNovios = $query->get();
+
+        //todo lo que he seleccionado es lo que se encarga de filtrar la informacion que me trae la base de datos
+        return view('couple.list',['novios' => $listNovios, 'filtroNombre' => $nombre, 'filtroFecha' => $fecha, 'filtroEstado' => $estado]); //esta linea pinta el HTML, busca en resurces/views/couple/list.blade.php
+
+        /***
+         * 
+         * $listNovios SOLO EXISTE EN ESTA FUNCIÓN, NO EXISTE EN LA VISTA, porque ['novio' => $listNovios] esto indica que dentro de resurces/views/couple/list.blade.php
+         * $listNovios se va a llamar $novio, que es lo que pone aqui 'novio'
+         */
     }
 
     /**
@@ -72,14 +101,9 @@ class CoupleController extends Controller
      */
     public function coupleEdit($id){
         $this->checkRole();
-        $novios = Novios::where('id', $id)->first();
-        $novios_rel = NoviosRel::where('id_novio', $id)->get();
-        $novios_rel_arr = [];
-        foreach($novios_rel as $novio_rel){
-            $novios_rel_arr[] = $novio_rel->id_invitado;
-        }
-        $invitados = Invitados::all();
-        return view('couple.edit',['novios' => $novios, 'invitados' => $invitados, 'novios_rel' => $novios_rel_arr]);
+        $novio = Novios::where('id', $id)->first();
+
+        return view('couple.edit',['novio' => $novio]);
     }
 
     /**
@@ -88,24 +112,27 @@ class CoupleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function coupleSave(Request $request){
-        $this->checkRole();
-        $id = $request->id;
-        if(!empty($id)){
-            $novios = Novios::where('id', $id)->first();
-        }else{
-            $novios = new Novios();
+        try{
+            $this->checkRole();
+            $id = $request->id;
+            if(!empty($id)){
+                $novios = Novios::where('id', $id)->first();
+            }else{
+                $novios = new Novios();
+            }
+            $novios->novio = $request->novio;
+            $novios->novia = $request->novia;
+            $novios->fecha_boda = $request->fecha_boda;
+            $novios->habilitar = $request->habilitar;
+            $novios->publicar = $request->publicar;
+            $novios->estado = $request->estado;
+            $novios->programa = $request->programa;
+            $novios->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
         }
-        $novios->novio = $request->novio;
-        $novios->novia = $request->novia;
-        $novios->fecha_boda = $request->fecha_boda;
-        $novios->habilitar = $request->habilitar;
-        $novios->publicar = $request->publicar;
-        $novios->estado = $request->estado;
-        $novios->programa = $request->programa;
-        $novios->save();
-        return response()->json([
-            'novios' => $novios,
-        ]);
+        
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente"]);
     }
 
     /**
@@ -445,6 +472,23 @@ class CoupleController extends Controller
         $novios_preferencias->save();
         return response()->json([
             'novios_preferencias' => $novios_preferencias,
+        ]);
+    }
+
+    public function coupleDelete(Request $request){
+        $this->checkRole();
+        try{
+            $id = $request->id;
+            $novios = Novios::where('id', $id)->first();
+            $novios->delete();
+        }catch(\Exception $e){
+            return response()->json([
+                'status' => "error",
+                'message' => $e->getMessage(),
+            ]);
+        }
+        return response()->json([
+            'status' => "success",
         ]);
     }
 

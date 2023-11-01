@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NovioRel extends Model
+class NoviosRel extends Model
 {
     protected $table = 'novios_rel';
 

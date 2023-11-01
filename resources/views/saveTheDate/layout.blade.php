@@ -16,8 +16,8 @@
                 <a class="brand-logo"><img src="/titila.png" alt="Titila"></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
-                    <li><a class="waves-effect waves-light btn-large {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
-                    <li><a class="waves-effect waves-light btn-large {{$_lang=='en'?'libro_link_full':'libro_link'}}">EN</a></li>
+                    <li><a class="waves-effect waves-light btn-large setEs {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
+                    <li><a class="waves-effect waves-light btn-large setIt {{$_lang=='it'?'libro_link_full':'libro_link'}}">IT</a></li>
                 </ul>
             </div>
         </nav>
@@ -25,7 +25,7 @@
             <ul class="enlinea">
                 <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
                 <li><a class="waves-effect waves-light btn-large setEs {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>
-                <li><a class="waves-effect waves-light btn-large setEn {{$_lang=='en'?'libro_link_full':'libro_link'}}">EN</a></li>
+                <li><a class="waves-effect waves-light btn-large setIt {{$_lang=='it'?'libro_link_full':'libro_link'}}">IT</a></li>
             </ul>
         </div>
         @yield('content')
@@ -52,15 +52,21 @@
                 //recargamos la página
                 location.reload();
             });
+            $('.setIt').click(function(){
+                //creamos la cookie lang con valor en
+                document.cookie = "lang=it";
+                //recargamos la página
+                location.reload();
+            });
             $('.setEs').on('touchstart', function(){
                 //creamos la cookie lang con valor es
                 document.cookie = "lang=es";
                 //recargamos la página
                 location.reload();
             });
-            $('.setEn').on('touchstart', function(){
+            $('.setIt').on('touchstart', function(){
                 //creamos la cookie lang con valor en
-                document.cookie = "lang=en";
+                document.cookie = "lang=it";
                 //recargamos la página
                 location.reload();
             });

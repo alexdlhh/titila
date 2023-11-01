@@ -23,18 +23,30 @@
     </nav>
     
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="/adminPanel">Dashboard</a></li>
-        <li><a href="/cityList">Ciudades</a></li>
-        <li><a href="/coupleList">Novios</a></li>
+        @if(Auth::user()->role == 'admin')
+            <li><a href="/adminPanel">Dashboard</a></li>
+            <li><a href="/cityList">Ciudades</a></li>
+            <li><a href="/coupleList">Novios</a></li>
+        @elseif(Auth::user()->role == 'couple')
+            <li><a href="/saveTheDatePanel">Dashboard</a></li>
+            <li><a href="/saveTheDatePanel/desing">Diseño</a></li>
+            <li><a href="/saveTheDatePanel/guests">Invitados</a></li>
+        @endif
         <li><a href="/logout">Logout</a></li>
     </ul>
 
     <div class="row">
         <div class="col s12 l2 hide-on-med-and-down" id="columna">
             <ul class="collection">
-                <li class="collection-item {{$section=='adminPanel'?'active':''}}"><a href="/adminPanel">Dashboard</a></li>
-                <li class="collection-item {{$section=='cityList'?'active':''}}"><a href="/cityList">Ciudades</a></li>
-                <li class="collection-item {{$section=='coupleList'?'active':''}}"><a href="/coupleList">Novios</a></li>
+                @if(Auth::user()->role == 'admin')
+                    <li class="collection-item {{$section=='adminPanel'?'active':''}}"><a href="/adminPanel">Dashboard</a></li>
+                    <li class="collection-item {{$section=='cityList'?'active':''}}"><a href="/cityList">Ciudades</a></li>
+                    <li class="collection-item {{$section=='coupleList'?'active':''}}"><a href="/coupleList">Novios</a></li>
+                @elseif(Auth::user()->role == 'couple')
+                    <li class="collection-item {{$section=='saveTheDatePanel'?'active':''}}"><a href="/saveTheDatePanel">Dashboard</a></li>
+                    <li class="collection-item {{$section=='desing'?'active':''}}"><a href="/saveTheDatePanel/desing">Diseño</a></li>
+                    <li class="collection-item {{$section=='guests'?'active':''}}"><a href="/saveTheDatePanel/guests">Invitados</a></li>
+                @endif
                 <li class="collection-item"><a href="/logout">Logout</a></li>
             </ul>
         </div>

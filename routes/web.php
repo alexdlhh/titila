@@ -16,6 +16,8 @@ Route::post('/do_register', [HomeController::class, 'do_register'])->name('do_re
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/adminPanel', [HomeController::class, 'adminPanel'])->name('adminPanel');
     Route::get('/saveTheDatePanel', [HomeController::class, 'saveTheDatePanel'])->name('saveTheDatePanel');
+    Route::get('/saveTheDatePanel/desing', [HomeController::class, 'desing'])->name('desing');
+    Route::get('/saveTheDatePanel/guests', [HomeController::class, 'guests'])->name('guests');
     Route::get('/guestPanel', [HomeController::class, 'guestPanel'])->name('guestPanel');
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 

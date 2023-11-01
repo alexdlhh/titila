@@ -18,9 +18,15 @@
     </nav>
     
     <ul class="sidenav" id="mobile-demo">
+        @if(Auth::user()->role == 'admin')
         <li><a href="/adminPanel">Dashboard</a></li>
         <li><a href="/cityList">Ciudades</a></li>
         <li><a href="/coupleList">Novios</a></li>
+        @elseif(Auth::user()->role == 'couple')
+        <li><a href="/saveTheDatePanel">Dashboard</a></li>
+        <li><a href="/saveTheDatePanel/desing">Diseño</a></li>
+        <li><a href="/saveTheDatePanel/guests">Invitados</a></li>
+        @endif
         <li><a href="/logout">Logout</a></li>
     </ul>
     @yield('content')

@@ -119,4 +119,22 @@ class HomeController extends Controller
         $admin['section'] = 'guestPanel';
         return view('guest.guestPanel')->with('admin', $admin);
     }
+
+    /**
+     * Muestra la vista de diseño de invitación
+     * @return \Illuminate\View\View
+     */
+    public function desing(){
+        $admin['section'] = 'desing';
+        return view('couple.desing')->with('admin', $admin);
+    }
+
+    /**
+     * Muestra la vista de invitados
+     * @return \Illuminate\View\View
+     */
+    public function guests(){
+        $admin['section'] = 'guests';
+        return view('couple.guests')->with('admin', $admin);
+    }
 }

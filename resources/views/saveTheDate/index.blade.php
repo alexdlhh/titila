@@ -178,7 +178,7 @@
                     </div>
                 </div>
                 <div class="col s12 center-align">
-                    <img src="\flechita.png" alt="">
+                    <img src="\flechita.png" alt="" class="responsive-img">
                 </div>
                 <div class="col s12 center-align">
                     <h2 class="title2 COLORED">{{$lang->_t('¡NOVEDADES!',$_lang)}}</h2>

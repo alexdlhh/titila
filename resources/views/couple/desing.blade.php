@@ -19,7 +19,6 @@
         <li class="tab col s3"><a href="#Modulos">Módulos</a>Módulos</li>
       </ul>
     </div>
-    
     <div id="media" class="row">
         <div class="center-align col s12">
             <p><h4>Imágen Principal</h4></p>
@@ -88,7 +87,6 @@
             </p>
         </div>
     </div>
-
     <div id="textos" class="row">
         <div class="center-align col l4 s12">
             <p><h5>Tamaño de texto de los títulos</h5></p>
@@ -121,12 +119,92 @@
         </div>
     </div>
     <div id="listado_regalos" class="col s12">
-        Test 3
+            <table>
+                <thead>
+                <tr>
+                    <th>Regalo</th>
+                    <th>URL</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Lavadora</td>
+                    <td>URL, http...</td>
+                    <td>
+                        <a class="waves-effect waves-light btn-small" href="http://localhost:8010/hkbskj_+_ogbdt/jkghjgf"><i class="material-icons left">edit</i>Editar</a>
+                        <a class="waves-effect waves-light btn-small" href="http://localhost:8010/hkbskj_+_ogbdt/jkghjgf"><i class="material-icons left">delete</i>Borrar</a>
+                    </td>
+                </tr>
+                </div>
+                </tbody>
+            </table>
+            <div>
+                <p>
+                    <h5>Añadir Regalo</h5>
+                </p>
+            </div>
+           <div class="row">
+                <div class="col l4 s12 input-field center-align">
+                    <input name=nombre type="text">
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="col l4 s12 input-field center-align">
+                    <input name=URL type="text">
+                    <label for="URL">URL</label>
+                </div>
+                <a class="waves-effect waves-light btn-small" href=""><i class="material-icons left"></i>Añadir</a>
+           </div> 
     </div>
-    <div id="Modulos" class="col s12">
-        Test 4
+    <div id="Modulos" class="row">
+        <div class="col l6 s12">
+            <select class="browser-default" id="lenguaje" >
+                        <option value="" disabled selected>Lenguaje</option>
+                        <option value="1" {{!empty($novio->lenguaje) && $novio->lenguaje==1?'selected':''}}>Español</option>
+                        <option value="2" {{!empty($novio->lenguaje) && $novio->lenguaje==2?'selected':''}}>Ingles</option>
+                        <option value="3" {{!empty($novio->lenguaje) && $novio->lenguaje==3?'selected':''}}>Frances</option>
+                        <option value="4" {{!empty($novio->lenguaje) && $novio->lenguaje==4?'selected':''}}>Italiano</option>
+                        <option value="5" {{!empty($novio->lenguaje) && $novio->lenguaje==5?'selected':''}}>Portugues</option>
+            </select>
+        </div>
+        <div class="col l6 s12">
+            <p>
+                <label>
+                    <input type="checkbox" class="filled-in" checked="checked" />
+                    <span>Mostrar Restaurantes</span>
+                </label>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col l6 s12">
+                <p>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" />
+                        <span>Lista de Regalos</span>
+                    </label>
+                </p>
+            </div>
+            <div class="col l6 s12">
+                <p>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" />
+                        <span>Mostrar Alojamientos</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l6 s12">
+                <p>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" />
+                        <span>Ciudad</span>
+                    </label>
+                </p>
+            </div>
+        </div>
     </div>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.0/tinymce.min.js"></script>
 <script>

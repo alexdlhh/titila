@@ -6,6 +6,10 @@ cargar D:\WorkSpace\titila-external\public\fonts\GillSans.ttc
     src: url('/fonts/GillSans.ttc');
 }
 @font-face {
+    font-family: 'GillSans-light';
+    src: url('/fonts/GillSans-Light.ttf');
+}
+@font-face {
     font-family: 'Meddon';
     src: url('/fonts/Meddon-Regular.ttf');
 }
@@ -30,7 +34,10 @@ nav{
     padding-top: 60px;
 }
 body > div.container > nav > div > ul > li > a{
-    margin:0 !important;
+    margin: 8px !important;
+}
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-floating, .dropdown-content, .collapsible, .sidenav {
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.14), 0 0px 0px 0px rgba(0,0,0,0.12), 0 0px 0px 0 rgba(0,0,0,0.2) !important;
 }
 .libro_link{
     font-family: 'GillSans' !important;
@@ -40,23 +47,26 @@ body > div.container > nav > div > ul > li > a{
     position: relative;
     top: 50px;
 }
-.libro_link_full{
+.libro_link_full {
     font-family: 'GillSans' !important;
     background-color: #766422 !important;
     border: 1px solid #766422 !important;
     color: white !important;
     position: relative;
     top: 50px;
+    font-size: small !important;
+    letter-spacing: 1px;
 }
 .divFecha{
     padding-top: 20px !important;
     text-align: center;
 }
-.divFecha span{
+.divFecha p{
     font-family: 'PetitFormalScript';
     font-size: 50px;
     color: #000000;
     text-align: center;
+    margin: 0px;
 }
 .location{
     font-family: 'GillSans';
@@ -64,6 +74,7 @@ body > div.container > nav > div > ul > li > a{
     color: #000000;
     text-align: center;
     padding-top: 50px !important;
+    letter-spacing: 3px;
 }
 .bigBorder{
     width: 50%;
@@ -79,20 +90,27 @@ body > div.container > nav > div > ul > li > a{
 .zone{
     z-index: 1;
     background-color: #766422;
-    padding-top:150px !important;
+    padding-top: 138px !important;
+    padding-bottom: 51px !important;
     text-align: center;
     top: -75px;
     position: relative;
 }
-.textoZone{
+.textoZone {
     color: white;
     font-family: 'GillSans' !important;
     line-height: 1;
+    margin: 6px;
+    letter-spacing: 2px;
+    font-size: small;
+}
+.margenZone{
+    margin-top: 10px;
 }
 .linkHead{
     font-family: 'GillSans';
     color: #080808 !important;
-    font-weight: bold !important;
+    font-weight: 200 !important;
 }
 .linkHead:hover{
     color: #766422 !important;
@@ -100,12 +118,16 @@ body > div.container > nav > div > ul > li > a{
 .active{
     color: #766422 !important;
 }
-.headZone{
+.headZone {
     text-align: center;
+    padding-bottom: 46px !important;
 }
 .linkHead{
     font-size: 1em;
     padding:5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    letter-spacing: 3px;
 }
 .footer{
     background-color: #766422;
@@ -123,9 +145,9 @@ body > div.container > nav > div > ul > li > a{
     padding-bottom: 30px;
     margin-top: 30px;
 }
-.subtitle{
+.subtitle {
     font-family: 'PetitFormalScript';
-    font-size: 30px;
+    font-size: 49px;
     color: #766422;
     text-align: center;
 }
@@ -145,11 +167,12 @@ body > div.container > nav > div > ul > li > a{
     color:#766422;
     line-height: 1;
 }
-#lista_regalos{
+#lista_regalos {
     font-family: 'GillSans';
     color: #766422;
     text-decoration: none;
     text-align: center;
+    letter-spacing: 2px;
 }
 .linea_fina{
     width: 70px;
@@ -163,7 +186,7 @@ body > div.container > nav > div > ul > li > a{
 .title2{
     font-size: 20px;
 }
-.colored{
+.colored {
     font-family: 'GillSans';
     color: #766422;
     font-weight: bold;
@@ -175,9 +198,16 @@ body > div.container > nav > div > ul > li > a{
 }
 .infoText p {
     line-height: 1;
+    font-family: 'GillSans-light';
+    font-size: 18px;
+    margin: 2px;
 }
 .infoText2 p {
-    padding:20px;
+    font-weight: bold;
+    font-family: 'GillSans' !important;
+    text-align: left;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 .centrar{
     text-align: center;
@@ -188,8 +218,11 @@ body > div.container > nav > div > ul > li > a{
     text-align: center;
     padding-bottom: 20px;
 }
-.padText p{
+.padText p {
     line-height: 1;
+    margin: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 .subtitle{
     margin-top: 60px;
@@ -206,6 +239,7 @@ body > div.container > nav > div > ul > li > a{
 #city{
     border: 1px solid #766422;
     margin-top: 200px;
+    border-bottom: 0px;
 }
 .cityImg{
     position: relative;
@@ -219,15 +253,47 @@ body > div.container > nav > div > ul > li > a{
 .powered{
     font-family: 'GillSans';
     text-align: center;
-    padding:30px !important;
+    padding-bottom: 30px !important;
+    color: #262A53;
+    padding-top: 60px !important;
 }
-.ultrapadding{
-    padding-top: 80px;
-    padding-bottom: 80px;
+.redessociales{
+    padding-bottom: 30px !important;
 }
-.ultrapadding2{
-    padding-top: 80px;
-    padding-bottom: 80px;
+#galeria_fotos{
+    height: auto;
+}
+#fixedToFooter{
+    padding-bottom:0px !important;
+    margin-bottom: 0px !important;
+    border-bottom: 0px transparent !important;
+}
+.ultrapadding {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+.ultrapadding2 {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    letter-spacing: 2px;
+}
+.titulos_info {
+    margin-top: 10px !important;
+    font-weight: bold !important;
+    font-family: 'GillSans' !important;
+    letter-spacing: 1px;
+}
+.titulos_imper{
+    margin-top: 10px !important;
+    font-weight: bold !important;
+    font-family: 'GillSans' !important;
+    letter-spacing: 1px;
+}
+.padding-flecha{
+    padding-top: 150px !important;
+}
+.cursiva{
+    font-style: italic;
 }
 .brand-logo img{
     width: 200px !important;
@@ -285,6 +351,19 @@ div#firma_guest {
     padding: 20px;
     border-radius: 5px;
 }
+.btn-large {
+    height: 48px;
+    line-height: 48px;
+    font-size: 15px;
+    padding: 0 20px;
+}
+.texto-mayusculas {
+    text-transform: uppercase;
+}
+.frase_celebre{
+    font-style: italic;
+    padding-bottom: 20px;
+}
 @media only screen and (max-width: 1000px) {
     .zone {
     	top: 0px;
@@ -297,9 +376,46 @@ div#firma_guest {
     }
 }
 @media only screen and (max-width: 900px) {
-    .imagen img{
-	position: relative;
-    	top: 0px;
+    .imagen img {
+        position: relative;
+        top: -22px;
+        height: 300px !important;
+        width: 120%;
+        max-width: 120% !important;
+    }
+    #city > div > div:nth-child(8) > div > p{
+        font-weight: 200;
+        padding-left: 30px;
+        padding-right: 30px;    
+    }
+    #city > div > div:nth-child(8) > div > p > b {
+        font-weight: bold;
+        display: block;
+        padding-top: 25px;
+    }
+    p.subtitle2 {
+        padding-bottom: 17px;
+        color: #766422;
+    }
+    .colored {
+        font-family: 'GillSans';
+        color: #766422;
+        font-weight: bold;
+        padding-top: 9px;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        padding-bottom: 6px;
+    }
+    .subtitle {
+        font-family: 'PetitFormalScript';
+        font-size: 37px;
+        color: #766422;
+        text-align: center;
+    }
+    .ultrapadding2 {
+        padding-top: 55px;
+        padding-bottom: 55px;
+        letter-spacing: 2px;
     }
     #program_config{
 	margin-bottom: 35px;
@@ -308,21 +424,67 @@ div#firma_guest {
         padding-bottom: 0px !important;
 	margin-bottom: 0px !important;
     }
+    .divFecha > p {
+        font-size: 50px;
+        margin: 0px;
+        font-family: 'PetitFormalScript';
+        line-height: 1.2;
+    }
+    .footer {
+        background-color: #766422;
+        width: 100%;
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
     .confirmar_box {
-    	padding-top: 30px;
+        padding-top: 0px;
+        margin-top: -40px;
+    }
+    .confirmar_box {
+        padding-top: 30px;
+        text-align: center;
+        padding-bottom: 0px;
+    }
+    .infoText p {
+        line-height: 1;
+        font-family: 'GillSans-light';
+        font-size: 15px;
+        margin: 2px;
+    }
+    .lista_regalos {
+        position: relative;
+        top: 75px;
+        margin-bottom: 170px;
+    }
+    img.responsive-img, video.responsive-video {
+        max-width: 100%;
+        height: auto;
+        margin-top: -35px;
+    }
+    .textoZone {
+        color: white;
+        font-family: 'GillSans' !important;
+        line-height: 1.6;
+        margin: 6px;
+        letter-spacing: 2px;
+        font-size: small;
     }
     body {
     	margin: 0;
     	overflow-x: hidden;
     }
     .subtitle {
-    	margin-top: 0px;
+        margin-top: 0px;
+        margin-bottom: 4px;
+        font-size: 33px;
+        padding-bottom: 23px;
     }
     .padText {
         font-family: 'GillSans';
-        padding-top: 20px;
+        padding-top: 30px;
         text-align: center;
-        padding-bottom: 70px;
+        padding-bottom: 150px;
+        line-height: 30px;
     }
     .program{
 	position: relative;
@@ -340,7 +502,8 @@ div#firma_guest {
         margin-left: 10px;
     }
     #programa {
-        border: 0px solid #080808 !important;
+        border: 1px solid #766422 !important;
+        padding-top: 64px;
     }
     .padText a.libro_link_full{
         font-size: 14px !important;
@@ -348,16 +511,24 @@ div#firma_guest {
     .padText p {
         line-height: 1;
         margin-top: 1px;
-        margin-bottom: 1px;
+        margin-bottom: 8px;
         font-weight: bold;
+    }
+    #lista_regalos {
+        font-family: 'GillSans';
+        color: #766422;
+        text-decoration: none;
+        text-align: center;
+        letter-spacing: 1px;
     }
     .lista_regalos{
         margin-top: 45px !important;
+        font-size: 12px;
     }
     .enlinea li a.libro_link {
         position: relative;
         top: -45px;
-        font-size: 11px;
+        font-size: 9px;
         padding: 5px !important;
         line-height: 1;
         height: auto;
@@ -365,16 +536,17 @@ div#firma_guest {
     .enlinea li a.libro_link_full{
         position: relative;
         top: -45px;
-        font-size: 11px;
+        font-size: 9px !important;
         padding: 5px !important;
         line-height: 1;
         height: auto;
-        margin-left: 12px;
-        margin-right: 12px;
+        margin-left: 6px;
+        margin-right: 6px;
     }
     .divFecha{
         position: relative;
-        top: 48px;
+        top: 40px;
+        padding-top: 0px !important;
         padding-left: 0px !important;
         margin-left: -10px !important;
     }
@@ -382,19 +554,27 @@ div#firma_guest {
         position: relative !important;
         right: -41px !important;
     }
-    .divFecha span {
+    .divFecha p {
         font-size: 48px;
     }
     .brand-logo img{
         width: 100px !important;
     }
     #title{
-        font-size: 30px;
+        font-size: 27px;
+        padding-left: 23px;
+        padding-right: 23px;
+        margin-top: -90px;
     }
     .linkHead {
-        font-size: 0.9em;
+        font-size: 0.65em;
         padding: 5px;
     }
+    .headZone {
+        text-align: center;
+        padding-bottom: 0px !important;
+        margin-bottom: -21px;
+    }    
     .location {
         font-family: 'GillSans';
         font-size: 12px;
@@ -402,6 +582,11 @@ div#firma_guest {
         text-align: center;
         padding-top: 25% !important;
         padding-bottom: 103px !important;
+    }
+    .textCity p {
+        font-family: 'GillSans';
+        color: #766422;
+        line-height: 1.6;
     }
     .imagen {
         text-align: center;
@@ -427,7 +612,7 @@ div#firma_guest {
 	padding-bottom: 60px !important;
     }
     .linea_fina {
-        width: 28px;
+        width: 65px;
         height: 1px;
         background-color: #766422;
         display: inline-block;
@@ -455,10 +640,12 @@ div#firma_guest {
         top: -90px;
         font-size: 30px;
         font-weight: 500;
+        letter-spacing: 2px;
     }
     .ultrapadding {
         padding-top: 0px;
         padding-bottom: 40px;
+        letter-spacing: 2;
     }
 }
 @media only screen and (max-width: 600px) {

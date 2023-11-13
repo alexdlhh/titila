@@ -11,27 +11,27 @@
 @section('content')
     <div style="clear:both;"></div>
     <div id="title"><p>{{str_replace('-',' ',$couple)}}<p></div>
-    <div class="row">
+    <div class="row" id="fixedToFooter">
         <div class="col s12">
             <div class="row">
-                <div class="col l6 offset-l3 s10 offset-s2 headZone">
+                <div class="col l6 offset-l3 s12 headZone">
                     <a href="#programa" class="linkHead">{{$lang->_t('PROGRAMA',$_lang)}}</a>
-                    <a href="#src" class="linkHead">{{$lang->_t('SRC',$_lang)}}</a>
-                    <a href="#fotos" class="linkHead" onclick="$('.modal2').show();">{{$lang->_t('FOTOS',$_lang)}}</a>
+                    <a href="#src" class="linkHead src_button">{{$lang->_t('SRC',$_lang)}}</a>
+                    <a href="#fotos" class="linkHead fotos_button" onclick="$('.modal2').show();">{{$lang->_t('FOTOS',$_lang)}}</a>
                     <a href="#city" class="linkHead">{{$lang->_t('EN LA CIUDAD',$_lang)}}</a>
                 </div>
             </div>
         </div>
         <div class="col l3 s1 divFecha">
-            <span>31</span><br>
-            <span>08</span><br>
-            <span>24</span>
+            <p>31</p>
+            <p>08</p>
+            <p>24</p>
         </div>
         <div class="col l6 s11 imagen">
             <img src="\images\saveTheDate\WhatsApp Image 2023-09-15 at 18.13.57.jpeg" class="responsive-img" alt="">
         </div>
         <div class="col l3 s12 location">
-            <p>HACIENDA LOS MOLINOS</p>
+            <p>HACIENDA LOS MOLINILLOS</p>
             <div class="bigBorder"></div>
             <p>SEVILLA</p>
         </div>
@@ -39,36 +39,36 @@
             <p class="textoZone">"{{$lang->_t('¡BIENVENIDOS A LA WEB DE NUESTRA BODA!',$_lang)}}</p>
             <p class="textoZone">{{$lang->_t('ESTAMOS ILUSIONADOS DE PODER COMPARTIR ESTE DIA TAN ESPECIAL CON VOSOTROS.',$_lang)}}</p>
             <p class="textoZone">{{$lang->_t('EN ESTA PÁGINA IREMOS COMPARTIENDO TODA LA INFORMACIÓN QUE NECESITAS. ¡TE ESPERAMOS EN SEVILLA!',$_lang)}}"</p>
-            <p class="textoZone">-Arianna & Tomas</p>
+            <p class="textoZone margenZone">-Arianna & Tomas</p>
         </div>
         <div class="col s12 program">
             <div class="row">
-                <div class="col l6 offset-l3 s10 offset-s1" id="programa">
+                <div class="col l8 offset-l2 s10 offset-s1" id="programa">
                     <h2 class="subtitle">{{$lang->_t('Programa',$_lang)}}</h2>
                     <div class="padText">
                         <p>11:00 am . {{$lang->_t('Ceremonia',$_lang)}}</p>
-                        <p>-</p>
+                        <p>~</p>
                         <p>1:00 pm . {{$lang->_t('Almuerzo',$_lang)}}</p>
-                        <p>-</p>
+                        <p>~</p>
                         <p>7:00 pm . {{$lang->_t('Aperitivo',$_lang)}}</p>
-                        <p>-</p>
+                        <p>~</p>
                         <p>9:00 pm . {{$lang->_t('Fiesta',$_lang)}}</p>
                     </div>
                     <h2 class="subtitle">{{$lang->_t('Menú',$_lang)}}</h2>
                     <div class="padText">
-                        <p>{{$lang->_t('ENTRANTES',$_lang)}}</p>
+                        <p class="subtitle2">{{$lang->_t('ENTRANTES',$_lang)}}</p>
                         <p>{{$lang->_t('Entrante 1',$_lang)}}</p>
                         <p>{{$lang->_t('Entrante 2',$_lang)}}</p>
                         <br>
-                        <p>{{$lang->_t('PRIMEROS',$_lang)}}</p>
+                        <p class="subtitle2">{{$lang->_t('PRIMEROS',$_lang)}}</p>
                         <p>{{$lang->_t('Plato 1',$_lang)}}</p>
                         <p>{{$lang->_t('Plato 2',$_lang)}}</p>
                         <br>
-                        <p>{{$lang->_t('SEGUNDOS',$_lang)}}</p>
+                        <p class="subtitle2">{{$lang->_t('SEGUNDOS',$_lang)}}</p>
                         <p>{{$lang->_t('Plato 1',$_lang)}}</p>
                         <p>{{$lang->_t('Plato 2',$_lang)}}</p>
                         <br>
-                        <p>{{$lang->_t('POSTRE',$_lang)}}</p>
+                        <p class="subtitle2">{{$lang->_t('POSTRE',$_lang)}}</p>
                         <p>{{$lang->_t('Postre 1',$_lang)}}</p>
                         <p>{{$lang->_t('Postre 2',$_lang)}}</p>
                         <br>
@@ -97,55 +97,48 @@
                 </div>
             </div>
         </div>
-        <div class="col s10 offset-s1" id="city">
+        <div class="col s12" id="city">
             <div class="row">
                 <div class="col s12 cityImg">
-                    <img src="\images\cities\sevilla.jpg" class="responsive-img">
+                    <img src="https://wedding.titila.es/images/cities/sevilla.jpg" class="responsive-img">
                 </div>
                 <div class="col s12">
                     <h2 class="cityTitle">{{$lang->_t('En la Ciudad...',$_lang)}}</h2>
                 </div>
                 <div class="col s12 textCity">
-                    <p>{{$lang->_t('Hércules me edificó.',$_lang)}}</p>
-                    <p>{{$lang->_t('Julio César me cercó',$_lang)}}</p>
-                    <p>{{$lang->_t('de muros y torres altas.',$_lang)}}</p>
-                    <p>{{$lang->_t('Y el Rey Santo me ganó',$_lang)}}</p>
-                    <p>{{$lang->_t('con Garci Pérez de Vargas.',$_lang)}}</p>
-                    <p>{{$lang->_t('Julio César avistó por primera vez la ciudad de Sevilla –llamada en la época romana ',$_lang)}}</p> 
-                    <p>{{$lang->_t('Híspalis– en el año 68 a.C., cuando vino a la península como cuestor del pretor Antistio',$_lang)}}</p> 
-                    <p>{{$lang->_t('Tuberon. Tenía 32 años y unas ambiciones ya en ciernes de poder. ',$_lang)}}</p> 
-                    <p>{{$lang->_t('Julio César estuvo en Sevilla entre los años 68 y 65 a.C., ',$_lang)}}</p> 
-                    <p>{{$lang->_t('cuando era cuestor —magistrado de la antigua Roma— de la provincia. ',$_lang)}}</p> 
-                    <p>{{$lang->_t('En esta época, acometió algunas restauraciones como las  ',$_lang)}}</p> 
-                    <p>{{$lang->_t('principales murallas y sus torreones, reemplazando la antigua empalizada. ',$_lang)}}</p> 
-                    <p>{{$lang->_t('Consiguió convertir la ciudad en un importante centro industrial de la Bética.',$_lang)}}</p>
-                    <p>{{$lang->_t('Itálica, en Santiponce (Sevilla), fue la primera ciudad creada por Roma fuera de la Península ',$_lang)}}</p>
-                    <p>{{$lang->_t('Itálica y la cuna de los emperadores Trajano y Adriano, dos de los personajes principales de la ',$_lang)}}</p>
-                    <p>{{$lang->_t('historia de lo que ahora es España.',$_lang)}}</p>
+                    <p class="frase_celebre">"{{$lang->_t('Hércules me edificó. Julio César me cercó de muros y torres altas. Y el Rey Santo me ganó con Garci Pérez de Vargas.',$_lang)}}"</p>
+                    <p class="texto-mayusculas">{{$lang->_t('Julio César avistó por primera vez la ciudad de Sevilla –llamada en la época romana Híspalis– en el año 68 a.C.,',$_lang)}}</p> 
+                    <p class="texto-mayusculas">{{$lang->_t('cuando vino a la península como cuestor del pretor Antistio Tuberon. Tenía 32 años y unas ambiciones ya en ciernes ',$_lang)}}</p> 
+                    <p class="texto-mayusculas">{{$lang->_t('de poder. Julio César estuvo en Sevilla entre los años 68 y 65 a.C., cuando era cuestor —magistrado de la antigua ',$_lang)}}</p> 
+                    <p class="texto-mayusculas">{{$lang->_t('Roma— de la provincia. En esta época, acometió algunas restauraciones, como las principales murallas y sus ',$_lang)}}</p> 
+                    <p class="texto-mayusculas">{{$lang->_t('torreones, reemplazando la antigua empalizada. Consiguió convertir la ciudad en un importante centro ',$_lang)}}</p>
+                    <p class="texto-mayusculas">{{$lang->_t('industrial de la Bética. Itálica, en Santiponce (Sevilla), fue la primera ciudad creada por Roma fuera de la Península ',$_lang)}}</p>
+                    <p class="texto-mayusculas">{{$lang->_t('Itálica y la cuna de los emperadores Trajano y Adriano, dos de los personajes principales',$_lang)}}</p>
+                    <p class="texto-mayusculas">{{$lang->_t('de la historia de lo que ahora es España.',$_lang)}}</p>
                 </div>
                 <div class="col l6 s12 centrar">
                     <p class="colored-fino ultrapadding title2">{{$lang->_t('INTO ÚTIL',$_lang)}}</p>
                     <div class="infoText">
-                        <b class="colored"><b>{{$lang->_t('TRANSPORTE AÉREO',$_lang)}}</b></b>
+                        <p class="colored titulos_info"><b>{{$lang->_t('TRANSPORTE AÉREO',$_lang)}}</b></p>
                         <p>{{$lang->_t('El aeropuerto de Sevilla es internacional.',$_lang)}}</p>
                         <p>{{$lang->_t('Vuelos directos a países como Suiza, Alemania, Francia,',$_lang)}}</p>
                         <p>{{$lang->_t('Italia y Reino Unido, entre otros.',$_lang)}}</p>
                         <p>{{$lang->_t('El aeropuerto dispone de terminal de aviación privada.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('TREN',$_lang)}}</b></b>
+                        <p class="colored titulos_info"><b>{{$lang->_t('TREN',$_lang)}}</b></p>
                         <p>{{$lang->_t('Renfe AVE Madrid-Sevilla: 2.5 horas. Frecuencia diaria.',$_lang)}}</p>
                         <p>{{$lang->_t('Distancia a Villa Luisa: 15 minutos.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('EN LA CIUDAD',$_lang)}}</b></b>
+                        <p class="colored titulos_info"><b>{{$lang->_t('EN LA CIUDAD',$_lang)}}</b></p>
                         <p>Uber y Cabify</p>
                         <p>TELE TAXI SEVILLA +(34) 954 62 22 22</p>
                         <p>RADIO TAXI SEVILLA +(34) 954 58 00 00</p>
                         <p>TAXI SEVILLA +(34) 954 62 14 61</p>
-                        <b class="colored"><b>{{$lang->_t('ESTETICA',$_lang)}}</b></b>
+                        <p class="colored titulos_info"><b>{{$lang->_t('ESTETICA',$_lang)}}</b></p>
                         <p>{{$lang->_t('(1 de cada, provee Laura)',$_lang)}}</p>
                         <p>{{$lang->_t('Peluquería',$_lang)}}</p>
                         <p>{{$lang->_t('Manicura',$_lang)}}</p>
                         <p>{{$lang->_t('Sastre & Modista',$_lang)}}</p>
                         <p>{{$lang->_t('Maquillaje',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('RESTAURANTES',$_lang)}}</b></b>
+                        <p class="colored titulos_info"><b>{{$lang->_t('RESTAURANTES',$_lang)}}</b></p>
                         <p>{{$lang->_t('Tradicional "XXXXXXX"',$_lang)}}</p>
                         <p>{{$lang->_t('De autor "XXXXXXX"',$_lang)}}</p>
                         <p>{{$lang->_t('Vistas "XXXXXXX"',$_lang)}}</p>
@@ -154,30 +147,30 @@
                 <div class="col l6 s12 centrar">
                     <h3 class="colored-fino ultrapadding2 title2">{{$lang->_t('IMPERDIBLES',$_lang)}}</h3>
                     <div class="infoText">
-                        <b class="colored"><b>{{$lang->_t('Real Alcázar de Sevilla',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Visita uno de los palacios reales más antiguos y activos del mundo',$_lang)}}</p>
-                        <p>{{$lang->_t('Patrimonio de la Humanidad por la Unesco',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('La Catedral de Sevilla & Giralda',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Visita la catedral gótica más grande del mundo.',$_lang)}}</p>
-                        <p>{{$lang->_t('Patrimonio de la Humanidad por la Unesco',$_lang)}}</p>
-                        <p>{{$lang->_t('Distancia a Villa Luisa: 15 minutos.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('El Archivo de Indias',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Visita al edificio que centralizó toda la documentación de los',$_lang)}}</p>
-                        <p>{{$lang->_t('territorios ultramarinos españoles, tras la conquista de América.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('Torre del Oro, Parque Maria Luisa y Casco antiguo',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Paseo imperdible que debe hacerse a pie para disfrutarlo todo.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('Calle MAteos Gago',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Sus bares de ambiente auténtico sevillano, una experiencia inolvidable.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('Rio Guadalquivir',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Paseo náutico. Fue uno de los puertos más importantes del mundo',$_lang)}}</p>
-                        <p>{{$lang->_t('y a donde llegaban los barcos de gran tonelaje cargados de oro, plata',$_lang)}}</p>
-                        <p>{{$lang->_t('y esmeraldas de América.',$_lang)}}</p>
-                        <b class="colored"><b>{{$lang->_t('Triana',$_lang)}}</b></b>
-                        <p>{{$lang->_t('Cruzando el Guadalquivir, Triana callecitas coloridas de buen tapeo',$_lang)}}</p>
-                        <p>{{$lang->_t('y tiendas de cerámica Tradicional',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('Real Alcázar de Sevilla',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Visita uno de los palacios reales más antiguos y activos del mundo',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('Patrimonio de la Humanidad por la Unesco',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('La Catedral de Sevilla & Giralda',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Visita la catedral gótica más grande del mundo.',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('Patrimonio de la Humanidad por la Unesco',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('Distancia a Villa Luisa: 15 minutos.',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('El Archivo de Indias',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Visita al edificio que centralizó toda la documentación de los',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('territorios ultramarinos españoles, tras la conquista de América.',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('Torre del Oro, Parque Maria Luisa y Casco antiguo',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Paseo imperdible que debe hacerse a pie para disfrutarlo todo.',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('Calle Mateos Gago',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Sus bares de ambiente auténtico sevillano, una experiencia inolvidable.',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('Rio Guadalquivir',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Paseo náutico. Fue uno de los puertos más importantes del mundo',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('y a donde llegaban los barcos de gran tonelaje cargados de oro, plata',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('y esmeraldas de América.',$_lang)}}</p>
+                        <p class="colored titulos_imper"><b>{{$lang->_t('Triana',$_lang)}}</b></p>
+                        <p class="cursiva">{{$lang->_t('Cruzando el Guadalquivir, Triana callecitas coloridas de buen tapeo',$_lang)}}</p>
+                        <p class="cursiva">{{$lang->_t('y tiendas de cerámica Tradicional',$_lang)}}</p>
                     </div>
                 </div>
-                <div class="col s12 center-align">
+                <div class="col s12 center-align padding-flecha">
                     <img src="\flechita.png" alt="" class="responsive-img">
                 </div>
                 <div class="col s12 center-align">
@@ -185,18 +178,18 @@
                 </div>
                 <div class="col s12 center-align">
                     <div class="infoText2">
-                        <p>{{$lang->_t('PASEO EN BARCO: Amigos y familia: Hemos reservado un paseo en barco por el río el día 1 de septiembre a 13 a 15hrs. Los que quieran acompañarnos. deben avisarnos antes del 15 de agosto pues el cupo es limitado e incluirá brunch de despedida SRC ariannaytomas@gmail.com o a nuestros whatsapp.',$_lang)}}</p>
-                        <p>{{$lang->_t('NIÑOS: Hemos contratado dos animadoras para llevar a los niños mayores de 4 años a la "isla Mágica", un parque temático y acuático muy divertido, durante el cocktail previo a la boda la tarde del 30. El drop in/drop off será en el restaurante del cocktail. SRC indicando número de niños a ariannaytomas@gmail.com o a nuestros whatsapp.',$_lang)}}</p>
+                        <p>{!!$lang->_t('PASEO EN BARCO: Amigos y familia: Hemos reservado un paseo en barco por el río el día 1 de septiembre a 13 a 15hrs. Los que quieran acompañarnos. deben avisarnos antes del 15 de agosto pues el cupo es limitado e incluirá brunch de despedida <b>SRC ariannaytomas@gmail.com o a nuestros whatsapp.</b>',$_lang)!!}</p>
+                        <p>{!!$lang->_t('NIÑOS: Hemos contratado dos animadoras para llevar a los niños mayores de 4 años a la "isla Mágica", un parque temático y acuático muy divertido, durante el cocktail previo a la boda la tarde del 30. El drop in/drop off será en el restaurante del cocktail. <b>SRC indicando número de niños a ariannaytomas@gmail.com o a nuestros whatsapp.</b>',$_lang)!!}</p>
                     </div>
                 </div>
                 <div class="col s12 powered">
                     <p><b>powered by TITILA</b></p>
                 </div>
-                <div class="col s12 centrar">
+                <div class="col s12 centrar redessociales">
                     <a href="" class="linkRs linkRs1"><img src="\images\home.png" alt=""></a>
                     <a href="" class="linkRs linkRs2"><img src="\images\instagram.png" alt=""></a>
                     <a href="" class="linkRs linkRs3"><img src="\images\pinterest.png" alt=""></a>
-                    <a href="" class="linkRs linkRs4"><img src="\images\facebook.png" alt=""></a>
+                    <a href="" class="linkRs linkRs4"><img src="\images\tiktok.webp" alt=""></a>
                 </div>
             </div>
         </div>
@@ -273,7 +266,7 @@
 <div id="fotos" class="modal2" onclick="$('.modal2').hide();">
     <div class="modal-content">
         <div class="row">
-            <div class="col s12">
+            <div class="col l4 offset-l4 s12" id="galeria_fotos">
                 <div class="carousel carousel-slider center">
                     <a class="carousel-item" href="#one!"><img src="https://picsum.photos/250/250"></a>
                     <a class="carousel-item" href="#two!"><img src="https://picsum.photos/251/251"></a>
@@ -290,10 +283,6 @@
         $(document).ready(function(){
             $('.modal2').hide();
             $('.modal').modal();
-            $('.carousel').carousel({
-                fullWidth: true,
-                indicators: true
-            });
             $('#confirmar_asistencia').click(function(){
                 var nombre = $('#nombre_asistente').val();
                 var num = $('#num_asistente').val();
@@ -343,6 +332,12 @@
                 }else{
                     alert("{{$lang->_t('Debes rellenar todos los campos',$_lang)}}");
                 }
+            })
+            $('.fotos_button').click(function(){
+                $('.carousel').carousel({
+                    fullWidth: true,
+                    indicators: true
+                });
             })
         });        
     </script>

@@ -13,7 +13,7 @@
     <div class="container">
         <nav>
             <div class="nav-wrapper">
-                <a class="brand-logo"><img src="/titila.png" alt="Titila"></a>
+                <a class="brand-logo" href="https://titila.es/" target="_blank"><img src="/titila.png" alt="Titila"></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#libro" class="waves-effect waves-light btn-large libro_link modal-trigger">{{$lang->_t('LIBRO DE FIRMAS',$_lang)}}</a></li>
                     <li><a class="waves-effect waves-light btn-large setEs {{$_lang=='es'?'libro_link_full':'libro_link'}}">ES</a></li>

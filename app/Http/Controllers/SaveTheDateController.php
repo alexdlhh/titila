@@ -24,6 +24,7 @@ class SaveTheDateController extends Controller
     protected $role;
 
     public function __construct(){
+        $this->middleware('auth', ['except' => ['couple','familybookGet','familybookInsert']]);
         $lang = 'es';
         if(!empty($_COOKIE['lang'])){
             $lang = $_COOKIE['lang'];
@@ -32,7 +33,6 @@ class SaveTheDateController extends Controller
         }
         $this->lang = new Lang();
         $this->role = ['admin'];
-        $this->middleware('auth', ['except' => ['couple','familybookGet','familybookInsert']]);
     }
 
     /**
@@ -51,8 +51,17 @@ class SaveTheDateController extends Controller
      * @return \Illuminate\View\View
      */
     public function couple($couple, $hash){
+        if($hash != '2d3e968fbb814f5c8999bca919f6e609'){
+            return view('forbidden');
+        }
         $_lang = !empty($_COOKIE['lang'])?$_COOKIE['lang']:'es';
-        return view('saveTheDate.index',['couple' => $couple, 'lang' => $this->lang, '_lang' => $_lang]);
+        $libro = LibroDeFirmas::where('hash', $hash)->orderBy('created_at', 'desc')->get();
+        $last=0;
+        foreach($libro as $l){
+            $last = $l->id;
+            break;
+        }
+        return view('saveTheDate.index',['hash'=>$hash, 'couple' => $couple, 'lang' => $this->lang, '_lang' => $_lang, 'libro' => $libro, 'last' => $last]);
     }
 
     /**
@@ -61,8 +70,8 @@ class SaveTheDateController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function familybookGet(Request $request){
-        $id_novio = $request->id_novio;
-        $libro = LibroDeFirmas::where('id_novio', $id_novio)->orderBy('created_at', 'desc')->get();
+        $hash = $request->hash;
+        $libro = LibroDeFirmas::where('hash', $hash)->orderBy('created_at', 'desc')->get();
         return response()->json([
             'libro' => $libro,
         ]);
@@ -75,11 +84,9 @@ class SaveTheDateController extends Controller
      */
     public function familybookInsert(Request $request){
         $libro = new LibroDeFirmas();
-        $libro->id_novio = $request->id_novio;
         $libro->mensaje = $request->mensaje;
         $libro->nombre = $request->nombre;
-        $libro->slug = $request->slug;
-        $libro->id_invitado = $request->id_invitado;
+        $libro->hash = $request->hash;
         $libro->save();
         return response()->json([
             'libro' => $libro,
@@ -106,4 +113,5 @@ class SaveTheDateController extends Controller
             'invitado' => $invitado,
         ]);
     }
+
 }

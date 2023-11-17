@@ -139,3 +139,12 @@ $labels['1837a0cc9f4b3847eb9ac00b5db9f185'] = 'Itálica y la cuna de los emperad
 $labels['dc070876a50ae495637138ca84fd05b6'] = 'de la historia de lo que ahora es España.';
 $labels['5ad3486b887664efdc04a78478f07a91'] = 'PASEO EN BARCO: Amigos y familia: Hemos reservado un paseo en barco por el río el día 1 de septiembre a 13 a 15hrs. Los que quieran acompañarnos. deben avisarnos antes del 15 de agosto pues el cupo es limitado e incluirá brunch de despedida <b>SRC ariannaytomas@gmail.com o a nuestros whatsapp.</b>';
 $labels['6a99c9b3bf5b0a785a4b4d8752c92984'] = 'NIÑOS: Hemos contratado dos animadoras para llevar a los niños mayores de 4 años a la "isla Mágica", un parque temático y acuático muy divertido, durante el cocktail previo a la boda la tarde del 30. El drop in/drop off será en el restaurante del cocktail. <b>SRC indicando número de niños a ariannaytomas@gmail.com o a nuestros whatsapp.</b>';
+$labels['5d4257cadd8cc0b926312ad929ced4c0'] = 'Acompañantes';
+$labels['289e1725ca11ead3456365b178c35dad'] = 'Apellido';
+$labels['b0a7f04ada44777baef3d2495fd2990b'] = 'Alergenos';
+$labels['b61541208db7fa7dba42c85224405911'] = 'Menu';
+$labels['dddf0d58442ebfd809f99d05ab7c69f9'] = 'La Ciudad...';
+$labels['0347999ca227a8b2700648a9186c3291'] = 'Haciendo clic en <span class="cursiva">“Lista de regalos solidarios”</span>';
+$labels['0b91ca77c8f602ca69afd247ae7e3dcc'] = 'Transferencia bancaria <strong>IT43K 02008 03284 000400543111</strong>';
+$labels['c1cd9ae85184c68dcfffa66e20219c15'] = 'Motivo del pago <span class="cursiva">"Lista de regalos-boda Arianna y Tomas"</span>';
+$labels['30cc00aea30ec70b7c1292b6458181c0'] = 'Enviar';

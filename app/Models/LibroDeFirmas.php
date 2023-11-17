@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LibroDeFirma extends Model
+class LibroDeFirmas extends Model
 {
     protected $table = 'libro_de_firmas';
 
     protected $fillable = [
         'nombre',
         'mensaje',
-        'id_novio',
-        'id_invitado',
-        'slug',
+        'hash',
     ];
 
     protected $hidden = [];
@@ -30,6 +28,6 @@ class LibroDeFirma extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'hash';
     }
 }

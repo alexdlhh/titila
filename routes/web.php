@@ -92,4 +92,5 @@ Route::post('/confirmation/insert', [SaveTheDateController::class, 'confirmation
  /**
   * SAVE THE DATE
   */
+Route::post('/saveTheDate/firmar', [SaveTheDateController::class, 'firmar'])->name('firmar');
 Route::get('/{couple}/{hash}', [SaveTheDateController::class, 'couple'])->name('couple');

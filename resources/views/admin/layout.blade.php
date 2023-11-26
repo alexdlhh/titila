@@ -17,7 +17,7 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Titila</a>
+            <a href="#!" class="brand-logo"><img src="/titila1.png" alt=""></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
@@ -35,7 +35,7 @@
         <li><a href="/logout">Logout</a></li>
     </ul>
 
-    <div class="row">
+    <div class="row" id="panelBox">
         <div class="col s12 l2 hide-on-med-and-down" id="columna">
             <ul class="collection">
                 @if(Auth::user()->role == 'admin')

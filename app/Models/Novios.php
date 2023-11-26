@@ -16,6 +16,7 @@ class Novios extends Model
         'publicar',
         'estado',
         'programa',
+        'id_city'
     ];
 
     protected $hidden = [];

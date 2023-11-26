@@ -12,13 +12,13 @@ class Media extends Model
         'nombre',
         'ruta',
         'tipo',
-        'id_ciudad'
+        'id_novio'
     ];
 
     protected $hidden = [];
 
-    public function ciudad()
+    public function novio()
     {
-        return $this->belongsTo(Ciudad::class, 'id_ciudad');
+        return $this->belongsTo(novio::class, 'id_novio');
     }
 }

@@ -28,7 +28,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row card">
     <div class="col s12">
         <table>
             <thead>
@@ -49,11 +49,12 @@
             </tbody>
         </table>
     </div>
+</div>
+<div class="row">
     <div class="col s12 right-align">
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Invitar</a>
     </div>
 </div>
-
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">

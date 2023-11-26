@@ -115,6 +115,22 @@
                 }
                 window.location.href="http://localhost:8010/coupleList/"+nombre+"/"+fecha+"/"+estado+"/";
             })
+
+            $('#filtroEstado').change(function(){
+                var nombre = $('#novios').val();
+                if(nombre == ''){
+                    nombre = '0';
+                }
+                var fecha = $('#fechas').val();
+                if(fecha == ''){
+                    fecha = '0';
+                }
+                var estado = $('#filtroEstado').val();
+                if(estado == null){
+                    estado = '0';
+                }
+                window.location.href="http://localhost:8010/coupleList/"+nombre+"/"+fecha+"/"+estado+"/";
+            })
         });        
     </script>
 @endsection

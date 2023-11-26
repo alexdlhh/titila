@@ -43,7 +43,27 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <textarea id="descripcion_ciudad">{{$city['descripcion'] ?? ''}}</textarea>
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#es">ES</a></li>
+                        <li class="tab col s3"><a href="#en">EN</a></li>
+                        <li class="tab col s3"><a href="#it">IT</a></li>
+                        <li class="tab col s3"><a href="#fr">FR</a></li>
+                    </ul>
+                </div>
+                @php
+                    $descripcion = json_decode($city['descripcion'] ?? '{}');
+                @endphp
+                <div class="col s12" id="es">
+                    <textarea id="descripcion_ciudad_es">{{$descripcion->es ?? ''}}</textarea>
+                </div>
+                <div class="col s12" id="en">
+                    <textarea id="descripcion_ciudad_en">{{$descripcion->en ?? ''}}</textarea>
+                </div>
+                <div class="col s12" id="it">
+                    <textarea id="descripcion_ciudad_it">{{$descripcion->it ?? ''}}</textarea>
+                </div>
+                <div class="col s12" id="fr">
+                    <textarea id="descripcion_ciudad_fr">{{$descripcion->fr ?? ''}}</textarea>
                 </div>
                 <div class="col s12 padding">
                     <a href="javascript:;" class="btn" id="saveCity">Guardar</a>
@@ -52,6 +72,48 @@
         </div>
     </div>
     @if($id!=0)
+        <div class="row card">
+            <div class="col s12 card-content">
+                <div class="row">
+                    <div class="col s6">
+                        <span class="card-title">Creatividades</span>
+                    </div>
+                    <div class="col s6">
+                        <a href="javascript:;" class="showhide btn-floating btn-large waves-effect waves-light showSVG" onclick="$(this).hide();$('#SVG').hide();$('.hideSVG').show()"><i class="material-icons">arrow_upward</i></a>
+                        <a href="javascript:;" class="showhide btn-floating btn-large waves-effect waves-light hideSVG" onclick="$(this).hide();$('#SVG').show();$('.showSVG').show()"><i class="material-icons">arrow_downward</i></a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col s11 file-field input-field">
+                        <div class="btn">
+                            <span>Añadir creatividades</span>
+                            <input type="file" id="newSVG" multiple>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                        </div>
+                    </div>
+                    <div class="col s1">
+                        <a href="javascript:;" class="btn" id="saveSVG">Guardar</a>
+                    </div>
+                    <div class="col s12" id="SVG">
+                        @if(!empty($svgs))
+                            <div class="row">
+                                @foreach($svgs as $svg)
+                                    <div class="col s3">
+                                        <div class="svgField">
+                                            {!!$svg->codigo!!}
+                                        </div>
+                                        <a href="javascript:;" class="btn red deleteSVG" data-id="{{$svg->id}}"><i class="material-icons">delete</i></a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row card">
             <div class="col s12 card-content">
                 <div class="row">
@@ -314,7 +376,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_restaurante"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#restaurant_es">ES</a></li>
+                            <li class="tab col s3"><a href="#restaurant_en">EN</a></li>
+                            <li class="tab col s3"><a href="#restaurant_it">IT</a></li>
+                            <li class="tab col s3"><a href="#restaurant_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="restaurant_es">
+                        <textarea id="descripcion_restaurante_es"></textarea>
+                    </div>
+                    <div class="col s12" id="restaurant_en">
+                        <textarea id="descripcion_restaurante_en"></textarea>
+                    </div>
+                    <div class="col s12" id="restaurant_it">
+                        <textarea id="descripcion_restaurante_it"></textarea>
+                    </div>
+                    <div class="col s12" id="restaurant_fr">
+                        <textarea id="descripcion_restaurante_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -344,7 +423,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_actividad"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#descripcion_es">ES</a></li>
+                            <li class="tab col s3"><a href="#descripcion_en">EN</a></li>
+                            <li class="tab col s3"><a href="#descripcion_it">IT</a></li>
+                            <li class="tab col s3"><a href="#descripcion_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="descripcion_es">
+                        <textarea id="descripcion_actividad_es"></textarea>
+                    </div>
+                    <div class="col s12" id="descripcion_en">
+                        <textarea id="descripcion_actividad_en"></textarea>
+                    </div>
+                    <div class="col s12" id="descripcion_it">
+                        <textarea id="descripcion_actividad_it"></textarea>
+                    </div>
+                    <div class="col s12" id="descripcion_fr">
+                        <textarea id="descripcion_actividad_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -374,7 +470,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_imperdible"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#imperdible_es">ES</a></li>
+                            <li class="tab col s3"><a href="#imperdible_en">EN</a></li>
+                            <li class="tab col s3"><a href="#imperdible_it">IT</a></li>
+                            <li class="tab col s3"><a href="#imperdible_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="imperdible_es">
+                        <textarea id="descripcion_imperdible_es"></textarea>
+                    </div>
+                    <div class="col s12" id="imperdible_en">
+                        <textarea id="descripcion_imperdible_en"></textarea>
+                    </div>
+                    <div class="col s12" id="imperdible_it">
+                        <textarea id="descripcion_imperdible_it"></textarea>
+                    </div>
+                    <div class="col s12" id="imperdible_fr">
+                        <textarea id="descripcion_imperdible_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -404,7 +517,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_estetica"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#estetica_es">ES</a></li>
+                            <li class="tab col s3"><a href="#estetica_en">EN</a></li>
+                            <li class="tab col s3"><a href="#estetica_it">IT</a></li>
+                            <li class="tab col s3"><a href="#estetica_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="estetica_es">
+                        <textarea id="descripcion_estetica_es"></textarea>
+                    </div>
+                    <div class="col s12" id="estetica_en">
+                        <textarea id="descripcion_estetica_en"></textarea>
+                    </div>
+                    <div class="col s12" id="estetica_it">
+                        <textarea id="descripcion_estetica_it"></textarea>
+                    </div>
+                    <div class="col s12" id="estetica_fr">
+                        <textarea id="descripcion_estetica_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -434,7 +564,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_alojamiento"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#alojamiento_es">ES</a></li>
+                            <li class="tab col s3"><a href="#alojamiento_en">EN</a></li>
+                            <li class="tab col s3"><a href="#alojamiento_it">IT</a></li>
+                            <li class="tab col s3"><a href="#alojamiento_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="alojamiento_es">
+                        <textarea id="descripcion_alojamiento_es"></textarea>
+                    </div>
+                    <div class="col s12" id="alojamiento_en">
+                        <textarea id="descripcion_alojamiento_en"></textarea>
+                    </div>
+                    <div class="col s12" id="alojamiento_it">
+                        <textarea id="descripcion_alojamiento_it"></textarea>
+                    </div>
+                    <div class="col s12" id="alojamiento_fr">
+                        <textarea id="descripcion_alojamiento_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -464,7 +611,24 @@
                         </div>
                     </div>
                     <div class="col s12">
-                        <textarea id="descripcion_transport"></textarea>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#transport_es">ES</a></li>
+                            <li class="tab col s3"><a href="#transport_en">EN</a></li>
+                            <li class="tab col s3"><a href="#transport_it">IT</a></li>
+                            <li class="tab col s3"><a href="#transport_fr">FR</a></li>
+                        </ul>
+                    </div>
+                    <div class="col s12" id="transport_es">
+                        <textarea id="descripcion_transport_es"></textarea>
+                    </div>
+                    <div class="col s12" id="transport_en">
+                        <textarea id="descripcion_transport_en"></textarea>
+                    </div>
+                    <div class="col s12" id="transport_it">
+                        <textarea id="descripcion_transport_it"></textarea>
+                    </div>
+                    <div class="col s12" id="transport_fr">
+                        <textarea id="descripcion_transport_fr"></textarea>
                     </div>
                 </div>
             </div>
@@ -480,7 +644,36 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.0/tinymce.min.js"></script>
     <script>
-        var textareas = ['#descripcion_ciudad','#descripcion_restaurante','#descripcion_actividad','#descripcion_imperdible','#descripcion_estetica','#descripcion_alojamiento','#descripcion_transport'];
+        var textareas = [
+            '#descripcion_ciudad_es',
+            '#descripcion_ciudad_en',
+            '#descripcion_ciudad_fr',
+            '#descripcion_ciudad_it',
+            '#descripcion_restaurante_es',
+            '#descripcion_restaurante_en',
+            '#descripcion_restaurante_it',
+            '#descripcion_restaurante_fr',
+            '#descripcion_actividad_es',
+            '#descripcion_actividad_en',
+            '#descripcion_actividad_fr',
+            '#descripcion_actividad_it',
+            '#descripcion_imperdible_es',
+            '#descripcion_imperdible_en',
+            '#descripcion_imperdible_fr',
+            '#descripcion_imperdible_it',
+            '#descripcion_estetica_es',
+            '#descripcion_estetica_en',
+            '#descripcion_estetica_it',
+            '#descripcion_estetica_fr',
+            '#descripcion_alojamiento_es',
+            '#descripcion_alojamiento_en',
+            '#descripcion_alojamiento_fr',
+            '#descripcion_alojamiento_it',
+            '#descripcion_transport_es',
+            '#descripcion_transport_en',
+            '#descripcion_transport_fr',
+            '#descripcion_transport_it'
+        ];
         $.each(textareas,function(index,textarea){
             tinymce.init({
                 selector: textarea,
@@ -489,6 +682,7 @@
             });
         });
         $(document).ready(function(){
+            $('.tabs').tabs();
             $('.modal').modal();
             $('.hideBasic').hide();
             $('.hideRestaurantes').hide();
@@ -497,19 +691,29 @@
             $('.hideEstetica').hide();
             $('.hideAlojamiento').hide();
             $('.hideTransporte').hide();
+            $('.showhide').hide();
 
             $('#saveCity').click(function(){
                 var id = $('#id').val();
                 var nombre = $('#nombre_ciudad').val();
                 var alias = $('#alias_ciudad').val();
                 var portada = $('#portada_ciudad')[0].files[0];
-                var descripcion = tinymce.get('descripcion_ciudad').getContent();
+                var descripcion_es = tinymce.get('descripcion_ciudad_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_ciudad_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_ciudad_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_ciudad_fr').getContent();
+                var description = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 var formData = new FormData();
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('alias',alias);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(description));
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
                     url: "/citySave",
@@ -533,13 +737,20 @@
                 restaurant = JSON.parse(restaurant);
                 $('#nombre_restaurante').val(restaurant.nombre);
                 $('#portada_restaurante_img').attr('src','/images/restaurants/'+restaurant.portada);
-                tinymce.get('descripcion_restaurante').setContent(restaurant.descripcion);
+                var descripcion_res = JSON.parse(restaurant.descripcion);
+                tinymce.get('descripcion_restaurante_es').setContent(descripcion_res.es);
+                tinymce.get('descripcion_restaurante_en').setContent(descripcion_res.en);
+                tinymce.get('descripcion_restaurante_it').setContent(descripcion_res.it);
+                tinymce.get('descripcion_restaurante_fr').setContent(descripcion_res.fr);
                 $('.saveRestaurant').attr('data-id',restaurant.id);
             });
             $('.addRestaurant').click(function(){
                 $('#nombre_restaurante').val('');
                 $('#portada_restaurante_img').attr('src','');
-                tinymce.get('descripcion_restaurante').setContent('');
+                tinymce.get('descripcion_restaurante_es').setContent('');
+                tinymce.get('descripcion_restaurante_en').setContent('');
+                tinymce.get('descripcion_restaurante_it').setContent('');
+                tinymce.get('descripcion_restaurante_fr').setContent('');
                 $('.saveRestaurant').attr('data-id','');
             });
             $('.saveRestaurant').click(function(){
@@ -547,13 +758,22 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_restaurante').val();
                 var portada = $('#portada_restaurante')[0].files[0];
-                var descripcion = tinymce.get('descripcion_restaurante').getContent();
+                var descripcion_es = tinymce.get('descripcion_restaurante_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_restaurante_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_restaurante_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_restaurante_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
                     url: "/restaurantSave",
@@ -598,14 +818,21 @@
                 activity = JSON.parse(activity);
                 $('#nombre_actividad').val(activity.nombre);
                 $('#portada_actividad').attr('src','/images/activity/'+activity.portada);
-                tinymce.get('descripcion_actividad').setContent(activity.descripcion);
+                var descripcion_act = JSON.parse(activity.descripcion);
+                tinymce.get('descripcion_actividad_es').setContent(descripcion_act.es);
+                tinymce.get('descripcion_actividad_en').setContent(descripcion_act.en);
+                tinymce.get('descripcion_actividad_it').setContent(descripcion_act.it);
+                tinymce.get('descripcion_actividad_fr').setContent(descripcion_act.fr);
                 //$('#web_actividad').val(activity.web);
                 $('.saveActivity').attr('data-id',activity.id);
             });
             $('.addActivity').click(function(){
                 $('#nombre_actividad').val('');
                 $('#portada_actividad').attr('src','');
-                tinymce.get('descripcion_actividad').setContent('');
+                tinymce.get('descripcion_actividad_es').setContent('');
+                tinymce.get('descripcion_actividad_en').setContent('');
+                tinymce.get('descripcion_actividad_it').setContent('');
+                tinymce.get('descripcion_actividad_fr').setContent('');
                 //$('#web_actividad').val('');
                 $('.saveActivity').attr('data-id','');
             });
@@ -614,14 +841,23 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_actividad').val();
                 var portada = $('#portada_actividad')[0].files[0];
-                var descripcion = tinymce.get('descripcion_actividad').getContent();
+                var descripcion_es = tinymce.get('descripcion_actividad_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_actividad_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_actividad_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_actividad_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 //var web = $('#web_actividad').val();
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 //formData.append('web',web);
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
@@ -667,14 +903,21 @@
                 mustSee = JSON.parse(mustSee);
                 $('#nombre_imperdible').val(mustSee.nombre);
                 $('#portada_imperdible').attr('src','/images/mustSee/'+mustSee.portada);
-                tinymce.get('descripcion_imperdible').setContent(mustSee.descripcion);
+                var descripcion_mus = JSON.parse(mustSee.descripcion);
+                tinymce.get('descripcion_imperdible_es').setContent(descripcion_mus.es);
+                tinymce.get('descripcion_imperdible_en').setContent(descripcion_mus.en);
+                tinymce.get('descripcion_imperdible_it').setContent(descripcion_mus.it);
+                tinymce.get('descripcion_imperdible_fr').setContent(descripcion_mus.fr);
                 //$('#web_imperdible').val(mustSee.web);
                 $('.saveMustSee').attr('data-id',mustSee.id);
             });
             $('.addMustSee').click(function(){
                 $('#nombre_imperdible').val('');
                 $('#portada_imperdible').attr('src','');
-                tinymce.get('descripcion_imperdible').setContent('');
+                tinymce.get('descripcion_imperdible_es').setContent('');
+                tinymce.get('descripcion_imperdible_en').setContent('');
+                tinymce.get('descripcion_imperdible_it').setContent('');
+                tinymce.get('descripcion_imperdible_fr').setContent('');
                 //$('#web_imperdible').val('');
                 $('.saveMustSee').attr('data-id','');
             });
@@ -683,14 +926,23 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_imperdible').val();
                 var portada = $('#portada_imperdible')[0].files[0];
-                var descripcion = tinymce.get('descripcion_imperdible').getContent();
+                var descripcion_es = tinymce.get('descripcion_imperdible_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_imperdible_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_imperdible_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_imperdible_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 //var web = $('#web_imperdible').val();
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 //formData.append('web',web);
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
@@ -736,13 +988,21 @@
                 stetic = JSON.parse(stetic);
                 $('#nombre_estetica').val(stetic.nombre);
                 $('#portada_estetica').attr('src','/images/esthetics/'+stetic.portada);
-                tinymce.get('descripcion_estetica').setContent(stetic.descripcion);
+                var descripcion_est = JSON.parse(stetic.descripcion);
+                tinymce.get('descripcion_estetica_es').setContent(descripcion_est.es);
+                tinymce.get('descripcion_estetica_en').setContent(descripcion_est.en);
+                tinymce.get('descripcion_estetica_it').setContent(descripcion_est.it);
+                tinymce.get('descripcion_estetica_fr').setContent(descripcion_est.fr);
+
                 $('.saveStetic').attr('data-id',stetic.id);
             });
             $('.addStetic').click(function(){
                 $('#nombre_estetica').val('');
                 $('#portada_estetica').attr('src','');
-                tinymce.get('descripcion_estetica').setContent('');
+                tinymce.get('descripcion_estetica_es').setContent('');
+                tinymce.get('descripcion_estetica_en').setContent('');
+                tinymce.get('descripcion_estetica_it').setContent('');
+                tinymce.get('descripcion_estetica_fr').setContent('');
                 $('.saveStetic').attr('data-id','');
             });
             $('.saveStetic').click(function(){
@@ -750,13 +1010,22 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_estetica').val();
                 var portada = $('#portada_estetica')[0].files[0];
-                var descripcion = tinymce.get('descripcion_estetica').getContent();
+                var descripcion_es = tinymce.get('descripcion_estetica_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_estetica_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_estetica_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_estetica_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
                     url: "/estheticsSave",
@@ -801,13 +1070,20 @@
                 accommodation = JSON.parse(accommodation);
                 $('#nombre_alojamiento').val(accommodation.nombre);
                 $('#portada_alojamiento').attr('src','/images/accommodation/'+accommodation.portada);
-                tinymce.get('descripcion_alojamiento').setContent(accommodation.descripcion);
+                var descripcion_alo = JSON.parse(accommodation.descripcion);
+                tinymce.get('descripcion_alojamiento_es').setContent(descripcion_alo.es);
+                tinymce.get('descripcion_alojamiento_en').setContent(descripcion_alo.en);
+                tinymce.get('descripcion_alojamiento_it').setContent(descripcion_alo.it);
+                tinymce.get('descripcion_alojamiento_fr').setContent(descripcion_alo.fr);
                 $('.saveAccommodation').attr('data-id',accommodation.id);
             });
             $('.addAccomodation').click(function(){
                 $('#nombre_alojamiento').val('');
                 $('#portada_alojamiento_img').attr('src','');
-                tinymce.get('descripcion_alojamiento').setContent('');
+                tinymce.get('descripcion_alojamiento_es').setContent('');
+                tinymce.get('descripcion_alojamiento_en').setContent('');
+                tinymce.get('descripcion_alojamiento_it').setContent('');
+                tinymce.get('descripcion_alojamiento_fr').setContent('');
                 $('.saveAccommodation').attr('data-id','');
             });
             $('.saveAccommodation').click(function(){
@@ -815,13 +1091,22 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_alojamiento').val();
                 var portada = $('#portada_alojamiento')[0].files[0];
-                var descripcion = tinymce.get('descripcion_alojamiento').getContent();
+                var descripcion_es = tinymce.get('descripcion_alojamiento_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_alojamiento_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_alojamiento_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_alojamiento_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
                     url: "/accommodationSave",
@@ -866,13 +1151,20 @@
                 transport = JSON.parse(transport);
                 $('#nombre_transport').val(transport.nombre);
                 $('#portada_transport').attr('src','/images/transport/'+transport.portada);
-                tinymce.get('descripcion_transport').setContent(transport.descripcion);
+                var descripcion_tra = JSON.parse(transport.descripcion);
+                tinymce.get('descripcion_transport_es').setContent(descripcion_tra.es);
+                tinymce.get('descripcion_transport_en').setContent(descripcion_tra.en);
+                tinymce.get('descripcion_transport_it').setContent(descripcion_tra.it);
+                tinymce.get('descripcion_transport_fr').setContent(descripcion_tra.fr);
                 $('.saveTransport').attr('data-id',transport.id);
             });
             $('.addTransport').click(function(){
                 $('#nombre_transport').val('');
                 $('#portada_transport').attr('src','');
-                tinymce.get('descripcion_transport').setContent('');
+                tinymce.get('descripcion_transport_es').setContent('');
+                tinymce.get('descripcion_transport_en').setContent('');
+                tinymce.get('descripcion_transport_it').setContent('');
+                tinymce.get('descripcion_transport_fr').setContent('');
                 $('.saveTransport').attr('data-id','');
             });
             $('.saveTransport').click(function(){
@@ -880,13 +1172,22 @@
                 var id = $(this).attr('data-id');
                 var nombre = $('#nombre_transport').val();
                 var portada = $('#portada_transport')[0].files[0];
-                var descripcion = tinymce.get('descripcion_transport').getContent();
+                var descripcion_es = tinymce.get('descripcion_transport_es').getContent();
+                var descripcion_en = tinymce.get('descripcion_transport_en').getContent();
+                var descripcion_it = tinymce.get('descripcion_transport_it').getContent();
+                var descripcion_fr = tinymce.get('descripcion_transport_fr').getContent();
+                var descripcion = {
+                    es:descripcion_es,
+                    en:descripcion_en,
+                    it:descripcion_it,
+                    fr:descripcion_fr
+                };
                 var formData = new FormData();
                 formData.append('id_ciudad',id_ciudad);
                 formData.append('id',id);
                 formData.append('nombre',nombre);
                 formData.append('portada',portada);
-                formData.append('descripcion',descripcion);
+                formData.append('descripcion',JSON.stringify(descripcion));
                 formData.append('_token','{{csrf_token()}}');
                 $.ajax({
                     url: "/transportSave",
@@ -924,6 +1225,53 @@
                         }
                     });
                 }
+            })
+
+            $('.deleteSVG').click(function(){
+                if(confirm('¿Está seguro de eliminar este SVG?')){
+                    var id = $(this).attr('data-id');
+                    $.ajax({
+                        url: "/svgDelete",
+                        type: 'POST',
+                        data: {
+                            id:id,
+                            _token:'{{csrf_token()}}'
+                        },
+                        success: function (data) {
+                            if(data.status == 'success'){
+                                M.toast({html: 'SVG eliminado correctamente'});
+                                window.location.reload();
+                            }else{
+                                M.toast({html: data.message});
+                            }
+                        }
+                    });
+                }
+            })
+            $('#saveSVG').click(function(){
+                var id_ciudad = $('#id').val();
+                var svgs = $('#newSVG')[0].files;
+                var formData = new FormData();
+                formData.append('id_ciudad',id_ciudad);
+                for (var i = 0; i < svgs.length; i++) {
+                    formData.append('svgs[]', svgs[i]);
+                }
+                formData.append('_token','{{csrf_token()}}');
+                $.ajax({
+                    url: "/svgSave",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if(data.status == 'success'){
+                            M.toast({html: 'SVG guardado correctamente'});
+                            window.location.reload();
+                        }else{
+                            M.toast({html: data.message});
+                        }
+                    }
+                });
             })
         });        
     </script>

@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Ciudad;
+use App\Models\Novios;
+use App\Models\Invitados;
+use App\Models\NoviosRel;
+use App\Models\MediaSvg;
+use App\Models\Media;
+use App\Models\NoviosPreferencias;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -98,7 +105,14 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function adminPanel(){
+        $cities = Ciudad::all();
+        $novios = Novios::all();
+        $invitados = Invitados::all();
+
         $admin['section'] = 'adminPanel';
+        $admin['cities'] = $cities;
+        $admin['novios'] = $novios;
+        $admin['invitados'] = $invitados;
         return view('admin.adminPanel')->with('admin', $admin);
     }
 
@@ -126,7 +140,73 @@ class HomeController extends Controller
      */
     public function desing(){
         $admin['section'] = 'desing';
+        $novios = Novios::where('id', Auth::user()->rel)->first();
+        $novios_rel = NoviosRel::where('id_novio', $novios->id)->first();
+        $svgs = MediaSvg::where('id_ciudad', $novios_rel->id_ciudad)->get();
+        $admin['novios_preferencias'] = NoviosPreferencias::where('id_novio', $novios->id)->first();
+        $admin['media'] = Media::where('id_novio', $novios->id)->get();
+        $admin['novios'] = $novios;
+        $admin['novios_rel'] = $novios_rel;
+        $admin['svgs'] = $svgs;
         return view('couple.desing')->with('admin', $admin);
+    }
+
+    /**
+     * Guardamos las preferencias de los novios
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function savePreferences(Request $request){
+        try{
+            $novios = Novios::where('id', Auth::user()->rel)->first();
+            $novios_rel = NoviosRel::where('id_novio', $novios->id)->first();
+            if(!empty($request->imagenes)){
+                foreach($request->imagenes as $imagen){
+                    //guardamos la imagen en public/images/saveTheDate
+                    $original_name = $imagen->getClientOriginalName();
+                    $nombre = time().$original_name.'.'.$imagen->getClientOriginalExtension();
+                    $destino = public_path('images/saveTheDate');
+                    $imagen->move($destino, $nombre);
+                    $ruta_imagen = '/images/saveTheDate/'.$nombre;
+                    //creamos el registro en la tabla media
+                    $media = new Media();
+                    $media->id_novio = $novios->id;
+                    $media->tipo = 'imagen';
+                    $media->ruta = $ruta_imagen;
+                    $media->save();
+                }
+            }
+            $novios_rel->id_media_svg = $request->svg_selected;
+            $novios_rel->save();
+            $novios_preferencias = NoviosPreferencias::where('id_novio', $novios->id)->first();
+            if(empty($novios_preferencias)){
+                $novios_preferencias = new NoviosPreferencias();
+                $novios_preferencias->id_novio = $novios->id;
+            }
+            $novios_preferencias->title_size = $request->title_size=='null'?0:$request->title_size;
+            $novios_preferencias->text_size = $request->text_size=='null'?0:$request->text_size;
+            $novios_preferencias->color_text = $request->color_text ?? '';
+            $novios_preferencias->message = $request->message ?? '';
+            $novios_preferencias->langs = $request->langs;
+            $novios_preferencias->show_restaurants = $request->show_restaurants ?? 0;
+            $novios_preferencias->show_gifts = $request->show_gifts ?? 0;
+            $novios_preferencias->show_city = $request->show_city ?? 0;
+            $novios_preferencias->show_hotel = $request->show_hotel ?? 0;
+            $novios_preferencias->save();
+        }catch(Exception $e){
+            return response()->json(['success' => false, 'mesage' => $e->getMessage()], 401);
+        }
+        return response()->json(['success' => true, 'message' => 'Preferencias guardadas correctamente.'], 200);
+    }
+
+    public function deleteMedia(Request $request){
+        try{
+            $media = Media::where('id', $request->id)->first();
+            $media->delete();
+        }catch(Exception $e){
+            return response()->json(['success' => false, 'mesage' => $e->getMessage()], 401);
+        }
+        return response()->json(['success' => true, 'message' => 'Imagen eliminada correctamente.'], 200);
     }
 
     /**

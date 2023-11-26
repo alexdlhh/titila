@@ -14,6 +14,7 @@ use App\Models\Imperdible;
 use App\Models\Estetica;
 use App\Models\Alojamiento;
 use App\Models\Transporte;
+use App\Models\MediaSvg;
 
 class CityController extends Controller
 {
@@ -33,6 +34,21 @@ class CityController extends Controller
         if(!in_array(Auth::user()->role, $this->role)){
             return view('forbidden');
         }
+    }
+
+    /**
+     * slugify
+     * @param string $text
+     * @return string $text
+     */
+    public function slugify($text){
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        $text = preg_replace('~[^-\w]+~', '', $text);
+        $text = trim($text, '-');
+        $text = preg_replace('~-+~', '-', $text);
+        $text = strtolower($text);
+        return $text;
     }
 
     /**
@@ -60,8 +76,9 @@ class CityController extends Controller
         $estetica = Estetica::where('id_ciudad', $id)->get();
         $alojamiento = Alojamiento::where('id_ciudad', $id)->get();
         $transporte = Transporte::where('id_ciudad', $id)->get();
+        $svgs = MediaSvg::where('id_ciudad', $id)->get();
         $admin['section'] = 'cityList';
-        return view('admin.cityEdit',['city' => $city, 'admin' => $admin, 'restaurantes' => $restaurantes, 'actividades' => $actividades, 'imperdibles' => $imperdibles, 'estetica' => $estetica, 'alojamiento' => $alojamiento, 'transporte' => $transporte, 'id' => $id]);
+        return view('admin.cityEdit',['city' => $city, 'admin' => $admin, 'restaurantes' => $restaurantes, 'actividades' => $actividades, 'imperdibles' => $imperdibles, 'estetica' => $estetica, 'alojamiento' => $alojamiento, 'transporte' => $transporte, 'id' => $id, 'svgs' => $svgs]);
     }
 
     /**
@@ -91,14 +108,16 @@ class CityController extends Controller
                 $city = Ciudad::find($request->id);
             }
             $city->nombre = $request->nombre;
-            $city->alias = $request->alias;
-            $city->descripcion = $request->descripcion;
+            $city->alias = $request->alias ?? $this->slugify($request->nombre);
+            $city->descripcion = $request->descripcion ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
                 $file = $request->file('portada');
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/cities/', $name);
                 $city->portada = $name;
+            }else{
+                $city->portada = '';
             }
             $city->save();
         }catch(Exception $e){
@@ -123,13 +142,15 @@ class CityController extends Controller
             }
             $restaurant->id_ciudad = $request->id_ciudad;
             $restaurant->nombre = $request->nombre;
-            $restaurant->descripcion = $request->descripcion;
+            $restaurant->descripcion = $request->descripcion ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
                 $file = $request->file('portada');
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/restaurants/', $name);
                 $restaurant->portada = $name;
+            }elseif($request->id == 0){
+                $restaurant->portada = '';
             }
             $restaurant->save();
         }catch(Exception $e){
@@ -166,7 +187,7 @@ class CityController extends Controller
             }
             $activity->id_ciudad = $request->id_ciudad;
             $activity->nombre = $request->nombre;
-            $activity->descripcion = $request->descripcion;
+            $activity->descripcion = $request->descripcion ?? '';
             //$activity->web = $request->web ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
@@ -174,6 +195,8 @@ class CityController extends Controller
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/activity/', $name);
                 $activity->portada = $name;
+            }elseif($request->id == 0){
+                $activity->portada = '';
             }
             $activity->save();
         }catch(Exception $e){
@@ -210,7 +233,7 @@ class CityController extends Controller
             }
             $mustSee->id_ciudad = $request->id_ciudad;
             $mustSee->nombre = $request->nombre;
-            $mustSee->descripcion = $request->descripcion;
+            $mustSee->descripcion = $request->descripcion ?? '';
             //$mustSee->web = $request->web ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
@@ -218,6 +241,8 @@ class CityController extends Controller
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/mustSee/', $name);
                 $mustSee->portada = $name;
+            }elseif($request->id == 0){
+                $mustSee->portada = '';
             }
             $mustSee->save();
         }catch(Exception $e){
@@ -254,13 +279,15 @@ class CityController extends Controller
             }
             $estetica->id_ciudad = $request->id_ciudad;
             $estetica->nombre = $request->nombre;
-            $estetica->descripcion = $request->descripcion;
+            $estetica->descripcion = $request->descripcion ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
                 $file = $request->file('portada');
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/esthetics/', $name);
                 $estetica->portada = $name;
+            }elseif($request->id == 0){
+                $estetica->portada = '';
             }
             $estetica->save();
         }catch(Exception $e){
@@ -297,13 +324,15 @@ class CityController extends Controller
             }
             $accommodation->id_ciudad = $request->id_ciudad;
             $accommodation->nombre = $request->nombre;
-            $accommodation->descripcion = $request->descripcion;
+            $accommodation->descripcion = $request->descripcion ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
                 $file = $request->file('portada');
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/accommodation/', $name);
                 $accommodation->portada = $name;
+            }elseif($request->id == 0){
+                $accommodation->portada = '';
             }
             $accommodation->save();
         }catch(Exception $e){
@@ -340,13 +369,15 @@ class CityController extends Controller
             }
             $transport->id_ciudad = $request->id_ciudad;
             $transport->nombre = $request->nombre;
-            $transport->descripcion = $request->descripcion;
+            $transport->descripcion = $request->descripcion ?? '';
             //si hay imagen la guardamos
             if($request->hasFile('portada')){
                 $file = $request->file('portada');
                 $name = time().$file->getClientOriginalName();
                 $file->move(public_path().'/images/transport/', $name);
                 $transport->portada = $name;
+            }elseif($request->id == 0){
+                $transport->portada = '';
             }
             $transport->save();
         }catch(Exception $e){
@@ -364,6 +395,44 @@ class CityController extends Controller
         $this->checkRole();
         $transport = Transporte::find($request->id);
         $transport->delete();
+        return response()->json(['status' => 'success'], 200);
+    }
+
+    /**
+     * Vamos a recibir un svg y guardamos su contenido en la base de datos
+     * @param Request $request
+     * @return Response $response
+     */
+    public function svgSave(Request $request){
+        $this->checkRole();
+        try{
+            //en svgs vamos a recibir varios svg, por eso lo recorremos y guardamos su contenido
+            foreach($request->svgs as $svg){
+                $svg_code = file_get_contents($svg);
+                $svg = new MediaSvg();
+                $svg->id_ciudad = $request->id_ciudad;
+                $svg->codigo = $svg_code;
+                $svg->save();
+            }
+        }catch(Exception $e){
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
+        return response()->json(['status' => 'success', 'id' => $svg->id], 200);
+    }
+
+    /**
+     * eliminamos svg
+     * @param Request $request
+     * @return Response $response
+     */
+    public function svgDelete(Request $request){
+        $this->checkRole();
+        try{
+            $svg = MediaSvg::find($request->id);
+            $svg->delete();
+        }catch(Exception $e){
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 422);
+        }
         return response()->json(['status' => 'success'], 200);
     }
 }

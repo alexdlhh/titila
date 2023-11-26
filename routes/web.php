@@ -20,7 +20,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/saveTheDatePanel/guests', [HomeController::class, 'guests'])->name('guests');
     Route::get('/guestPanel', [HomeController::class, 'guestPanel'])->name('guestPanel');
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-
+    Route::post('/savePreferences', [HomeController::class, 'savePreferences'])->name('savePreferences');
+    Route::post('/deleteMedia', [HomeController::class, 'deleteMedia'])->name('deleteMedia');
     /**
      * CITY 
      */
@@ -49,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/transportDelete', [CityController::class, 'transportDelete'])->name('transportDelete');
     Route::post('/transportSave', [CityController::class, 'transportSave'])->name('transportSave');
     
+    Route::post('/svgDelete', [CityController::class, 'svgDelete'])->name('svgDelete');
+    Route::post('/svgSave', [CityController::class, 'svgSave'])->name('svgSave');
     /**
      * COUPLE
      */
@@ -58,14 +61,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/coupleSave', [CoupleController::class, 'coupleSave'])->name('coupleSave');
     Route::post('/coupleDelete', [CoupleController::class, 'coupleDelete'])->name('coupleDelete');
     Route::post('/coupleMenu', [CoupleController::class, 'coupleMenu'])->name('coupleMenu');
+    Route::post('/coupleMenuDelete', [CoupleController::class, 'coupleMenuDelete'])->name('coupleMenuDelete');
     Route::post('/coupleAccomodaionRel', [CoupleController::class, 'coupleAccomodaionRel'])->name('coupleAccomodaionRel');
     Route::post('/coupleTransportRel', [CoupleController::class, 'coupleTransportRel'])->name('coupleTransportRel');
     Route::post('/coupleMustSeeRel', [CoupleController::class, 'coupleMustSeeRel'])->name('coupleMustSeeRel');
-    Route::post('/coupleEsteticRel', [CoupleController::class, 'coupleEsteticRel'])->name('coupleEsteticRel');
+    Route::post('/coupleSteticRel', [CoupleController::class, 'coupleSteticRel'])->name('coupleSteticRel');
     Route::post('/coupleActivityRel', [CoupleController::class, 'coupleActivityRel'])->name('coupleActivityRel');
     Route::post('/coupleRestaurantRel', [CoupleController::class, 'coupleRestaurantRel'])->name('coupleRestaurantRel');
     Route::post('/coupleCityRel', [CoupleController::class, 'coupleCityRel'])->name('coupleCityRel');
-    Route::post('/coupleMediaSVGRel', [CoupleController::class, 'coupleMediaSVGRel'])->name('coupleMediaSVGRel');
 
     /**
      * NOVIOS PANEL

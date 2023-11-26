@@ -51,7 +51,7 @@ class CoupleController extends Controller
      * @param int $estado
      * @return \Illuminate\View\View
      */
-    public function coupleList($nombre = '0', $fecha = '0', $estado = '0'){//AQUI ESTAMOS DICIENDO QUE SI $nombre no tiene valor, le asignamos null, y asi con los demas
+    public function coupleList($nombre = '0', $fecha = '0', $estado = '0'){
         $this->checkRole();
     
         // Inicia la consulta
@@ -74,13 +74,7 @@ class CoupleController extends Controller
         $listNovios = $query->get();
 
         //todo lo que he seleccionado es lo que se encarga de filtrar la informacion que me trae la base de datos
-        return view('couple.list',['novios' => $listNovios, 'filtroNombre' => $nombre, 'filtroFecha' => $fecha, 'filtroEstado' => $estado]); //esta linea pinta el HTML, busca en resurces/views/couple/list.blade.php
-
-        /***
-         * 
-         * $listNovios SOLO EXISTE EN ESTA FUNCIÓN, NO EXISTE EN LA VISTA, porque ['novio' => $listNovios] esto indica que dentro de resurces/views/couple/list.blade.php
-         * $listNovios se va a llamar $novio, que es lo que pone aqui 'novio'
-         */
+        return view('couple.list',['novios' => $listNovios, 'filtroNombre' => $nombre, 'filtroFecha' => $fecha, 'filtroEstado' => $estado]); 
     }
 
     /**
@@ -101,9 +95,46 @@ class CoupleController extends Controller
      */
     public function coupleEdit($id){
         $this->checkRole();
-        $novio = Novios::where('id', $id)->first();
+        if(!empty($id)){
+            $novio = Novios::where('id', $id)->first();
+            $novios_rel = NoviosRel::where('id_novio', $novio->id)->first();
+            $menu = Menu::where('id_novio', $novio->id)->get();
+            $user = User::where('rel', $novio->id)->first();
+        }else{
+            $novio = [];
+            $novios_rel = [];
+            $menu = [];
+            $user = [];
+        }
+        $cities = Ciudad::all();
+        $selected_city = [];
+        $restaurants_city = [];
+        $activities_city = [];
+        $must_see_city = [];
+        $estetica_city = [];
+        $alojamiento_city = [];
+        $transporte_city = [];
 
-        return view('couple.edit',['novio' => $novio]);
+        if(!empty($novios_rel->id_ciudad)){
+            $selected_city = Ciudad::where('id', $novios_rel->id_ciudad)->first();
+            $restaurants_city = Restaurante::where('id_ciudad', $novios_rel->id_ciudad)->get();
+            $activities_city = Actividad::where('id_ciudad', $novios_rel->id_ciudad)->get();
+            $must_see_city = Imperdible::where('id_ciudad', $novios_rel->id_ciudad)->get();
+            $estetica_city = Estetica::where('id_ciudad', $novios_rel->id_ciudad)->get();
+            $alojamiento_city = Alojamiento::where('id_ciudad', $novios_rel->id_ciudad)->get();
+            $transporte_city = Transporte::where('id_ciudad', $novios_rel->id_ciudad)->get();
+        }
+
+        $data = [
+            'restaurants_city' => $restaurants_city,
+            'activities_city' => $activities_city,
+            'must_see_city' => $must_see_city,
+            'estetica_city' => $estetica_city,
+            'alojamiento_city' => $alojamiento_city,
+            'transporte_city' => $transporte_city,
+        ];
+
+        return view('couple.edit',['novio' => $novio, 'cities' => $cities, 'selected_city' => $selected_city, 'data' => $data, 'novios_rel' => $novios_rel, 'menu' => $menu, 'user' => $user]);
     }
 
     /**
@@ -128,11 +159,37 @@ class CoupleController extends Controller
             $novios->estado = $request->estado;
             $novios->programa = $request->programa;
             $novios->save();
+            $id = $novios->id;
+            $novio_rel = NoviosRel::where('id_novio', $id)->first();
+            
+            if(empty($novio_rel)){
+                $novio_rel = new NoviosRel();
+                $novio_rel->id_novio = $id;
+            }            
+            $novio_rel->id_ciudad = $request->city;
+            $novio_rel->save();
+
+            $user = User::where('rel', $id)->first();
+            if(empty($user)){
+                $user = new User();
+                $user->name = $request->novio.' '.$request->novia;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->role = 'couple';
+                $user->rel = $id;
+            }else{
+                $user->name = $request->novio.' '.$request->novia;
+                $user->email = $request->email;
+                if(!empty($request->password)){
+                    $user->password = Hash::make($request->password);
+                }
+            }
+            $user->save();
         }catch(\Exception $e){
-            return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
         
-        return response()->json(["success"=>true,"message"=>"Guardado correctamente"]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id]);
     }
 
     /**
@@ -141,21 +198,40 @@ class CoupleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function coupleMenu(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $menu = Menu::where('id_novio', $id_novio)->first();
-        }else{
-            $menu = new Menu();
+        try{
+            $this->checkRole();
+            $id = $request->id;
+            if(!empty($id)){
+                $menu = Menu::where('id', $id)->first();
+            }else{
+                $menu = new Menu();
+            }
+            $menu->id_novio = $request->id_novio;
+            $menu->cuerpo = $request->cuerpo ?? '';
+            $menu->alergenos = $request->alergenos ?? '';
+            $menu->nombre = $request->nombre ?? '';
+            $menu->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $menu->id_novio = $request->id_novio;
-        $menu->cuerpo = $request->cuerpo;
-        $menu->alergenos = $request->alergenos;
-        $menu->nombre = $request->nombre;
-        $menu->save();
-        return response()->json([
-            'menu' => $menu,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id]);
+    }
+
+    /**
+     * Borramos el menú
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function coupleMenuDelete(Request $request){
+        try{
+            $this->checkRole();
+            $id = $request->id;
+            $menu = Menu::where('id', $id)->first();
+            $menu->delete();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
+        }
+        return response()->json(["success"=>true,"message"=>"Borrado correctamente", "id" => $id]);
     }
 
     /**
@@ -164,20 +240,28 @@ class CoupleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function coupleAccomodaionRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $alojamiento = explode(',', $request->alojamiento_id);
+            if($request->status==1){
+                $alojamiento[] = $request->alojamiento_id;
+            }else{
+                $alojamiento = array_diff($alojamiento, [$request->alojamiento_id]);
+            }
+            $alojamiento = implode(',', $alojamiento);
+            $novios_rel->alojamiento = $alojamiento;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->alojamiento = $request->alojamiento;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -186,20 +270,28 @@ class CoupleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function coupleTransportRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $transporte = explode(',', $request->transporte_id);
+            if($request->status==1){
+                $transporte[] = $request->transporte_id;
+            }else{
+                $transporte = array_diff($transporte, [$request->transporte_id]);
+            }
+            $transporte = implode(',', $transporte);
+            $novios_rel->transporte = $transporte;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->transporte = $request->transporte;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -208,20 +300,28 @@ class CoupleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function coupleMustSeeRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $imperdibles = explode(',', $novios_rel->imperdibles);
+            if($request->status==1){
+                $imperdibles[] = $request->must_id;
+            }else{
+                $imperdibles = array_diff($imperdibles, [$request->must_id]);
+            }
+            $imperdibles = implode(',', $imperdibles);
+            $novios_rel->imperdibles = $imperdibles;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->imperdibles = $request->imperdibles;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -229,21 +329,29 @@ class CoupleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function coupleEsteticaRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+    public function coupleSteticRel(Request $request){
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $estetica = explode(',', $novios_rel->estetica);
+            if($request->status==1){
+                $estetica[] = $request->stetic_id;
+            }else{
+                $estetica = array_diff($estetica, [$request->stetic_id]);
+            }
+            $estetica = implode(',', $estetica);
+            $novios_rel->estetica = $estetica;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->estetica = $request->estetica;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -251,21 +359,29 @@ class CoupleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function coupleActividadesRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+    public function coupleActivityRel(Request $request){
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $actividades = explode(',', $novios_rel->actividades);
+            if($request->status==1){
+                $actividades[] = $request->activity_id;
+            }else{
+                $actividades = array_diff($actividades, [$request->activity_id]);
+            }
+            $actividades = implode(',', $actividades);
+            $novios_rel->actividades = $actividades;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->actividades = $request->actividades;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -273,42 +389,29 @@ class CoupleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function coupleRestaurantesRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
+    public function coupleRestaurantRel(Request $request){
+        try{
+            $this->checkRole();
+            $id_novio = $request->id_novio;
+            if(!empty($id_novio)){
+                $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
+            }else{
+                return response()->json(["success"=>false,"message"=>"Algo ha salido mal"]);
+            }
+            $novios_rel->id_novio = $request->id_novio;
+            $restaurants = explode(',', $novios_rel->restaurantes);
+            if($request->status==1){
+                $restaurants[] = $request->id_restaurante;
+            }else{
+                $restaurants = array_diff($restaurants, [$request->id_restaurante]);
+            }
+            $restaurants = implode(',', $restaurants);
+            $novios_rel->restaurantes = $restaurants;
+            $novios_rel->save();
+        }catch(\Exception $e){
+            return response()->json(["success"=>false,"message"=>"Algo ha salido mal", "error" => $e->getMessage()]);
         }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->restaurantes = $request->restaurantes;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
-    }
-
-    /**
-     * guardamos la relacion de ciudad de la pareja
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function coupleCityRel(Request $request){
-        $this->checkRole();
-        $id_novio = $request->id_novio;
-        if(!empty($id_novio)){
-            $novios_rel = NoviosRel::where('id_novio', $id_novio)->first();
-        }else{
-            $novios_rel = new NoviosRel();
-        }
-        $novios_rel->id_novio = $request->id_novio;
-        $novios_rel->id_ciudad = $request->id_ciudad;
-        $novios_rel->save();
-        return response()->json([
-            'novios_rel' => $novios_rel,
-        ]);
+        return response()->json(["success"=>true,"message"=>"Guardado correctamente", "id" => $id_novio]);
     }
 
     /**
@@ -332,6 +435,10 @@ class CoupleController extends Controller
             'novios_rel' => $novios_rel,
         ]);
     }
+
+    /**
+     * A PARTIR DE AQUI ES PANEL DE NOVIOS
+     */
 
     /**
      * Escritorio de la pareja

@@ -135,7 +135,7 @@
     </div>
     <div class="col s12">
         <div id="listado_regalos" class="row">
-            <div class="col s12">
+            <div class="col s6">
                 <table>
                     <thead>
                     <tr>
@@ -145,35 +145,39 @@
                     </tr>
                     </thead>
     
-                    <tbody>
-                    <tr>
-                        <td>Lavadora</td>
-                        <td>URL, http...</td>
-                        <td>
-                            <a class="waves-effect waves-light btn-small" href="http://localhost:8010/hkbskj_+_ogbdt/jkghjgf"><i class="material-icons left">edit</i>Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="http://localhost:8010/hkbskj_+_ogbdt/jkghjgf"><i class="material-icons left">delete</i>Borrar</a>
-                        </td>
-                    </tr>
+                    <tbody id="gifts_">
+                        @if(!empty($admin['gifts']))
+                            @foreach($admin['gifts'] as $gift)
+                                <tr id="gt{{$gift->id}}">
+                                    <td>{{$gift->nombre}}</td>
+                                    <td><a href="{{$gift->link}}" target="_blank">{{$gift->link}}</a></td>
+                                    <td>
+                                        <a class="waves-effect waves-light btn-small editGift" href="javascript:;" data-json="{{json_encode($gift)}}"><i class="material-icons left">edit</i>Editar</a>
+                                        <a class="waves-effect waves-light btn-small deleteGift" href="javascript:;" data-id="{{$gift->id}}"><i class="material-icons left">delete</i>Borrar</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
-            </div>
-            <div class="col s12">
-                <p>
-                    <h5>Añadir Regalo</h5>
-                </p>
-            </div>
-            <div class="col s12">
+            </div>            
+            <div class="col s6">
                 <div class="row">
-                    <div id="regalo" class="col l4 s12 input-field center-align">
-                        <input name=nombre type="text">
-                        <label for="nombre">Nombre Regalo</label>
+                    <div class="col s12">
+                        <p>
+                            <h5>Añadir Regalo</h5>
+                        </p>
                     </div>
-                    <div class="col l4 s12 input-field center-align">
-                        <input id="URL" name=URL type="text">
-                        <label for="URL">URL</label>
+                    <div id="regalo" class="col s12 input-field">
+                        <input id="gift_name" type="text">
+                        <label for="gift_name">Nombre Regalo</label>
+                    </div>
+                    <div class="col s12 input-field">
+                        <input id="URL_gift" name=URL_gift type="text">
+                        <label for="URL_gift">URL</label>
                     </div>
                     <div class="col s12">
-                        <a class="waves-effect waves-light btn-small" href=""><i class="material-icons left"></i>Añadir</a>
+                        <a class="waves-effect waves-light btn-small" href="javascript:;" id="addGift"><i class="material-icons left"></i>Añadir</a>
                     </div>
                 </div>
             </div> 
@@ -319,6 +323,80 @@
                 data: {id:id,_token:token},
                 success: function (data) {
                     console.log(data);
+                }
+            });
+        })
+        $('#addGift').click(function(){
+            var id = $(this).attr('data-id');
+            var gift_name = $('#gift_name').val();
+            var URL_gift = $('#URL_gift').val();
+            var token = '{{csrf_token()}}';
+            $.ajax({
+                url: '/saveGift',
+                type: 'POST',
+                data: {id:id,gift_name:gift_name,URL_gift:URL_gift,_token:token},
+                success: function (data) {
+                    M.toast({html: 'Regalo añadido correctamente', classes: 'rounded'});
+                    $new_gift = `
+                        <tr id="gt${data.id}">
+                            <td>${gift_name}</td>
+                            <td><a href="${URL_gift}" target="_blank">${URL_gift}</a></td>
+                            <td>
+                                <a class="waves-effect waves-light btn-small editGift" href="javascript:;" data-json='${JSON.stringify(data.data)}'><i class="material-icons left">edit</i>Editar</a>
+                                <a class="waves-effect waves-light btn-small deleteGift" href="javascript:;" data-id="${data.id}"><i class="material-icons left">delete</i>Borrar</a>
+                            </td>
+                        </tr>
+                    `;
+                    if(id>0){
+                        $('#gt'+id).remove();
+                        $('#gifts_').append($new_gift);
+                    }else{
+                        $('#gifts_').append($new_gift);
+                    }
+                    $('#gift_name').val('');
+                    $('#URL_gift').val('');
+                    $('#addGift').attr('data-id',0);
+
+                    $('.editGift').click(function(){
+                        var gift = $(this).attr('data-json');
+                        gift = JSON.parse(gift);
+                        $('#gift_name').val(gift.nombre);
+                        $('#URL_gift').val(gift.link);
+                        $('#addGift').attr('data-id',gift.id);
+                    })
+                    $('.deleteGift').click(function(){
+                        var id = $(this).attr('data-id');
+                        var token = '{{csrf_token()}}';
+                        $.ajax({
+                            url: '/deleteGift',
+                            type: 'POST',
+                            data: {id:id,_token:token},
+                            success: function (data) {
+                                $('#gt'+id).remove();
+                                M.toast({html: 'Regalo borrado correctamente', classes: 'rounded'});
+                            }
+                        });
+                    })
+                }
+            });
+        })
+        $('.editGift').click(function(){
+            var gift = $(this).attr('data-json');
+            gift = JSON.parse(gift);
+            $('#gift_name').val(gift.nombre);
+            $('#URL_gift').val(gift.link);
+            $('#addGift').attr('data-id',gift.id);
+        })
+        $('.deleteGift').click(function(){
+            var id = $(this).attr('data-id');
+            var token = '{{csrf_token()}}';
+            $.ajax({
+                url: '/deleteGift',
+                type: 'POST',
+                data: {id:id,_token:token},
+                success: function (data) {
+                    $('#gt'+id).remove();
+                    M.toast({html: 'Regalo borrado correctamente', classes: 'rounded'});
                 }
             });
         })

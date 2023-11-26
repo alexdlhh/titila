@@ -43,6 +43,9 @@ li a{
     height: 100%;
     width: auto;
 }
+.fondoTitila{
+    background-color: #BADFD6  !important;
+}
 nav{
     background-color: #BADFD6 !important;
 }

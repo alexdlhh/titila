@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
     Route::post('/savePreferences', [HomeController::class, 'savePreferences'])->name('savePreferences');
     Route::post('/deleteMedia', [HomeController::class, 'deleteMedia'])->name('deleteMedia');
+    Route::post('/saveGift', [HomeController::class, 'saveGift'])->name('saveGift');
+    Route::post('/deleteGift', [HomeController::class, 'deleteGift'])->name('deleteGift');
     /**
      * CITY 
      */

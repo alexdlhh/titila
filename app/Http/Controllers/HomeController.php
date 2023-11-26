@@ -12,6 +12,7 @@ use App\Models\NoviosRel;
 use App\Models\MediaSvg;
 use App\Models\Media;
 use App\Models\NoviosPreferencias;
+use App\Models\Regalos;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -145,6 +146,7 @@ class HomeController extends Controller
         $svgs = MediaSvg::where('id_ciudad', $novios_rel->id_ciudad)->get();
         $admin['novios_preferencias'] = NoviosPreferencias::where('id_novio', $novios->id)->first();
         $admin['media'] = Media::where('id_novio', $novios->id)->get();
+        $admin['gifts'] = Regalos::where('id_novio', $novios->id)->get();
         $admin['novios'] = $novios;
         $admin['novios_rel'] = $novios_rel;
         $admin['svgs'] = $svgs;
@@ -207,6 +209,34 @@ class HomeController extends Controller
             return response()->json(['success' => false, 'mesage' => $e->getMessage()], 401);
         }
         return response()->json(['success' => true, 'message' => 'Imagen eliminada correctamente.'], 200);
+    }
+
+    public function saveGift(Request $request){
+        try{
+            $novios = Novios::where('id', Auth::user()->rel)->first();
+            if(!empty($request->id)){
+                $regalo = Regalos::where('id', $request->id)->first();
+            }else{
+                $regalo = new Regalos();
+                $regalo->id_novio = $novios->id;
+            }
+            $regalo->nombre = $request->gift_name;
+            $regalo->link = $request->URL_gift;
+            $regalo->save();
+        }catch(Exception $e){
+            return response()->json(['success' => false, 'mesage' => $e->getMessage()], 401);
+        }
+        return response()->json(['success' => true, 'message' => 'Regalo guardado correctamente.', 'data' => $regalo, 'id' => $regalo->id], 200);
+    }
+
+    public function deleteGift(Request $request){
+        try{
+            $regalo = Regalos::where('id', $request->id)->first();
+            $regalo->delete();
+        }catch(Exception $e){
+            return response()->json(['success' => false, 'mesage' => $e->getMessage()], 401);
+        }
+        return response()->json(['success' => true, 'message' => 'Regalo eliminado correctamente.'], 200);
     }
 
     /**

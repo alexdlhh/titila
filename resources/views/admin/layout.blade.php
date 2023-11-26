@@ -31,6 +31,7 @@
             <li><a href="/saveTheDatePanel">Dashboard</a></li>
             <li><a href="/saveTheDatePanel/desing">Diseño</a></li>
             <li><a href="/saveTheDatePanel/guests">Invitados</a></li>
+            <li><a href="/saveTheDatePanel/downloadLibro">Descargar Libro de Firmas</a></li>
         @endif
         <li><a href="/logout">Logout</a></li>
     </ul>
@@ -46,6 +47,7 @@
                     <li class="collection-item {{$section=='saveTheDatePanel'?'active':''}}"><a href="/saveTheDatePanel">Dashboard</a></li>
                     <li class="collection-item {{$section=='desing'?'active':''}}"><a href="/saveTheDatePanel/desing">Diseño</a></li>
                     <li class="collection-item {{$section=='guests'?'active':''}}"><a href="/saveTheDatePanel/guests">Invitados</a></li>
+                    <li class="collection-item fondoTitila"><a href="/saveTheDatePanel/downloadLibro">Descargar Libro de Firmas</a></li>
                 @endif
                 <li class="collection-item"><a href="/logout">Logout</a></li>
             </ul>
